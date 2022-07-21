@@ -8,6 +8,9 @@ import { selectCircuitByCustomerId } from '../circuits/circuit-slice';
 import { selectPaymentsByCustomerId } from '../payments/payments-slice';
 import PageHeader from '../../components/PageTitle';
 import CircuitsWithPaymentList from './CircuitWithPaymentList';
+import format from 'date-fns/format';
+import SpanningTable from '../../components/spanning-table/SpanningTable';
+import CustomerPaymentList from './CustomerPaymentList';
 
 const CustomerDetails = () => {
   const [circuitsWithPaymentInfo, setCircuitsWithPaymentInfo] = useState([]);
@@ -43,8 +46,8 @@ const CustomerDetails = () => {
             name: c.name,
             activationDate: '1/9/2022',
             monthlyCost: c.cost,
-            lastPaymentDate: payment.billed.from,
-            paymentExpiryDate: payment.billed.to,
+            lastPaymentDate: format(payment.billed.from, 'PP'),
+            paymentExpiryDate: format(payment.billed.to, 'PP'),
             amountPaid: payment.amount,
             balance: payment.balance,
           };
@@ -65,10 +68,12 @@ const CustomerDetails = () => {
             subTitle={customer.contacts}
           />
           <Grid container spacing={2}>
-            <Grid item md={9}>
+            <Grid item md={12}>
               <CircuitsWithPaymentList circuits={circuitsWithPaymentInfo} />
             </Grid>
-            <Grid item md={3}></Grid>
+            <Grid item md={4}>
+              <CustomerPaymentList />
+            </Grid>
           </Grid>
         </>
       )}

@@ -8,8 +8,6 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedTableToolbar from './EnhancedTableToolbar';
 import PropTypes from 'prop-types';
@@ -49,7 +47,6 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {
@@ -96,10 +93,6 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
     setPage(0);
   };
 
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
-  };
-
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -117,7 +110,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby='tableTitle'
-            size={dense ? 'small' : 'medium'}
+            size={'medium'}
           >
             <EnhancedTableHead
               numSelected={selected.length}
@@ -170,7 +163,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
               {emptyRows > 0 && (
                 <TableRow
                   style={{
-                    height: (dense ? 33 : 53) * emptyRows,
+                    height:  53 * emptyRows,
                   }}
                 >
                   <TableCell colSpan={6} />
@@ -189,10 +182,6 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <FormControlLabel
-        control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label='Dense padding'
-      />
     </Box>
   );
 }

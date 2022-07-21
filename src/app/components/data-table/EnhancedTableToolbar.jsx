@@ -3,9 +3,12 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { alpha } from '@mui/material/styles';
 import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 const EnhancedTableToolbar = (props) => {
   const { numSelected, tableLabel } = props;
@@ -45,11 +48,17 @@ const EnhancedTableToolbar = (props) => {
       )}
 
       {numSelected > 0 ? (
-        <Tooltip title='Delete'>
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
+        <Box sx={{ display: 'flex' }}>
+          <Tooltip title='Add Payment'>
+            <Button
+              color='success'
+              variant='outlined'
+              sx={{ height: '32px', whiteSpace: 'nowrap' }}
+            >
+              Add To Payment List
+            </Button>
+          </Tooltip>
+        </Box>
       ) : (
         <Tooltip title='Filter list'>
           <IconButton>
