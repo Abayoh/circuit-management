@@ -12,7 +12,7 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
-import KeyValuePairListItem from '../../components/KeyValuePairListItem';
+import KeyValuePairListItem from '../../../components/KeyValuePairListItem';
 
 const NoBorderTableCell = styled(TableCell)({
   '&.MuiTableCell-root': {

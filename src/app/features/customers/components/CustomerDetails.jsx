@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCustomerById } from './customers-slice';
-import { selectCircuitByCustomerId } from '../circuits/circuit-slice';
-import { selectPaymentsByCustomerId } from '../payments/payments-slice';
-import PageHeader from '../../components/PageTitle';
+import { getCustomerById } from '../services/customers-slice';
+import { selectCircuitByCustomerId } from '../../circuits/circuit-slice';
+import { selectPaymentsByCustomerId } from '../../payments/payments-slice';
+import PageHeader from '../../../components/PageTitle';
 import CircuitsWithPaymentList from './CircuitWithPaymentList';
 import format from 'date-fns/format';
-import SpanningTable from '../../components/spanning-table/SpanningTable';
+import SpanningTable from '../../../components/spanning-table/SpanningTable';
 import CustomerPaymentList from './CustomerPaymentList';
 
 const CustomerDetails = () => {

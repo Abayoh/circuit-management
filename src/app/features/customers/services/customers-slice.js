@@ -1,3 +1,4 @@
+import { responsiveFontSizes } from '@mui/material';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -17,6 +18,13 @@ export const fetchCustomers = createAsyncThunk(
   }
 );
 
+export const addCustomers = createAsyncThunk(
+  'customers/addCustomer',
+  async (customers, thunkApi) => {
+    const response = await axios.post(URL, customers);
+    return response.data
+  })
+
 const customersSlice = createSlice({
   name: 'customers',
   initialState,
@@ -29,12 +37,22 @@ const customersSlice = createSlice({
       .addCase(fetchCustomers.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.customers = action.payload;
-        state.state = 'idle';
       })
       .addCase(fetchCustomers.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      });
+      })
+      .addCase(addCustomers.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(addCustomers.fulfilled, (state, action) => {
+        state.status = "succeeded"
+        state.customers.push(action.payload)
+      })
+      .addCase(addCustomers.rejected, (state, action) => {
+        state.status = "faild"
+        state.error = action.error.message
+      })
   },
 });
 

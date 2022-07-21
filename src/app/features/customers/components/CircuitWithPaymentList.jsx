@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import format from 'date-fns/format';
-import EnhancedTable from '../../components/data-table/EnhancedTable';
+import EnhancedTable from '../../../components/data-table/EnhancedTable';
 import { Avatar, Button } from '@mui/material';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';

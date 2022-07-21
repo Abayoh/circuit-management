@@ -1,6 +1,7 @@
 import React from 'react';
-import CustomersList from './CustomerLists';
-import CustomerDetails from './CustomerDetails';
+import CustomersList from './components/CustomerLists';
+import CustomerDetails from './components/CustomerDetails';
+import AddCustomer from './components/AddCustomer';
 
 const Customers = React.lazy(() => import('./Customers'));
 
@@ -15,6 +16,11 @@ const customersRoutes = [
         index: true,
         element: <CustomersList />,
         name: 'Customers',
+      },
+      {
+        path: 'add-customer',
+        element: <AddCustomer />,
+        name: 'Add Customer',
       },
       {
         path: ':id',
