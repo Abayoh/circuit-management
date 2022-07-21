@@ -1,0 +1,288 @@
+{
+  "circuits": [
+    {
+      "id": "cir1",
+      "name": "MON-TEL_1S/0001",
+      "customerId": "cus2",
+      "capacity": "STM1",
+      "cost": 4500
+    },
+    {
+      "id": "cir2",
+      "customerId": "cus1",
+      "name": "MON-TEL_1S/0002",
+      "capacity": "STM1",
+      "cost": 4500
+    },
+    {
+      "id": "cir3",
+      "customerId": "cus3",
+      "name": "MON-TEL_4S/0001",
+      "capacity": "STM4",
+      "cost": 4500
+    },
+    {
+      "id": "cir5",
+      "customerId": "cus5",
+      "name": "MON-TEL_16S/0002",
+      "capacity": "STM1",
+      "cost": 4500
+    },
+    {
+      "id": "cir6",
+      "customerId": "cus6",
+      "name": "MON-TEL_16S/0002",
+      "capacity": "STM16",
+      "cost": 4500
+    },
+    {
+      "id": "cir7",
+      "customerId": "cus7",
+      "name": "MON-TEL_16S/0004",
+      "capacity": "STM16",
+      "cost": 4500
+    }
+  ],
+  "customers": [
+    {
+      "id": "cus1",
+      "name": "Electro Shock",
+      "type": "regular",
+      "address": {
+        "address1": "Jamica Road",
+        "street": "UN Drive",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": "+231886255993"
+    },
+    {
+      "id": "cus2",
+      "name": "PowerNet",
+      "type": "regular",
+      "address": {
+        "address1": "Default Billing",
+        "street": "12 Street",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": "+231886255993"
+    },
+    {
+      "id": "cus3",
+      "name": "ConnectLiberia",
+      "type": "regular",
+      "address": {
+        "address1": "2nd Floor, CenterPoint Building",
+        "street": "18 Street",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": "+231886255993"
+    },
+    {
+      "id": "cus4",
+      "name": "TeliCell",
+      "type": "regular",
+      "address": {
+        "address1": "Tubman Boulevard, Opposite EPA",
+        "street": "3rd street",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": "+231886255993"
+    },
+    {
+      "id": "cus5",
+      "name": "Orange Liberia",
+      "type": "shareholder",
+      "address": {
+        "address1": "Orange Libaria",
+        "street": "Bye Pass",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": "+231886255993"
+    },
+    {
+      "id": "cus6",
+      "name": "MTN LoneStar",
+      "type": "shareholder",
+      "address": {
+        "address1": "MTN LoneStar, Congo Town",
+        "street": "Tubman Boulevard",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": "+231886255993"
+    },
+    {
+      "id": "cus7",
+      "name": "LTC Mobile",
+      "type": "shareholder",
+      "address": {
+        "address1": "Libtelco Compound",
+        "street": "lynch Street",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": "+231886255993"
+    }
+  ],
+  "users": [
+    {
+      "id": "usr1",
+      "name": "abayoh",
+      "email": "abayoh@ccl.com.lr",
+      "role": ["admin"]
+    },
+    {
+      "id": "usr2",
+      "name": "jbrown",
+      "email": "jbrown@ccl.com.lr",
+      "role": ["user"]
+    },
+    {
+      "id": "usr3",
+      "name": "abayoh",
+      "email": "nkevin@ccl.com.lr",
+      "role": ["user"]
+    },
+    {
+      "id": "usr7",
+      "name": "pwhei",
+      "email": "pwhei@ccl.com.lr",
+      "role": ["admin"]
+    },
+    {
+      "id": "usr8",
+      "name": "pwhei",
+      "email": "pwhei@ccl.com.lr",
+      "role": ["admin"]
+    }
+  ],
+  "payments": [
+    {
+      "id": "pym1",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir1",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": "1640995200",
+        "to": "1648684800000"
+      },
+      "balance": 5000,
+      "dateDeposited": "1641168000000"
+    },
+    {
+      "id": "pym2",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "Electro Shock",
+      "customerId": "cus1",
+      "circuitId": "cir2",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": "1640995200",
+        "to": "1648684800000"
+      },
+      "balance": 5000,
+      "dateDeposited": "1641168000000"
+    },
+    {
+      "id": "pym3",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "TeliCell",
+      "customerId": "cus4",
+      "circuitId": "cir4",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": "1640995200",
+        "to": "1648684800000"
+      },
+      "balance": 5000,
+      "dateDeposited": "1641168000000"
+    },
+    {
+      "id": "pym4",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "Connect Liberia",
+      "customerId": "cus3",
+      "circuitId": "cir3",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": "1640995200",
+        "to": "1648684800000"
+      },
+      "balance": 5000,
+      "dateDeposited": "1641168000000"
+    },
+    {
+      "id": "pym5",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "Orange Liberia",
+      "customerId": "cus5",
+      "circuitId": "cir5",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": "1640995200",
+        "to": "1648684800000"
+      },
+      "balance": 5000,
+      "dateDeposited": "1641168000000"
+    },
+    {
+      "id": "pym6",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "MTN Lonestar Cell",
+      "customerId": "cus6",
+      "circuitId": "cir6",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": "1640995200",
+        "to": "1648684800000"
+      },
+      "balance": 5000,
+      "dateDeposited": "1641168000000"
+    },
+    {
+      "id": "pym7",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "LTC Mobile",
+      "customerId": "cus7",
+      "circuitId": "cir7",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": "1640995200",
+        "to": "1648684800000"
+      },
+      "balance": 5000,
+      "dateDeposited": "1641168000000"
+    }
+  ],
+  "logs": [
+    {
+      "userId": "usr1",
+      "action": "edit:payment",
+      "date": "1648684800000",
+      "dataType": "payment",
+      "old": {},
+      "new": {}
+    }
+  ]
+}
