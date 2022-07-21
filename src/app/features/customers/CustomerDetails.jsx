@@ -24,10 +24,20 @@ const CustomerDetails = () => {
     if (customerCircuits.length > 0 && customerPayments.length > 0) {
       const joinCircuitsWithPaymentInfo = () => {
         return customerCircuits.map((c) => {
-          const payment = customerPayments.find((p) => {
+          let payment = customerPayments.find((p) => {
             debugger;
             return p.circuitId === c.id && p.current;
           });
+          if (!payment) {
+            payment = {
+              amount: 0,
+              balance: 0,
+              billed: {
+                from: Date.now(),
+                to: Date.now(),
+              },
+            };
+          }
           debugger;
           return {
             name: c.name,

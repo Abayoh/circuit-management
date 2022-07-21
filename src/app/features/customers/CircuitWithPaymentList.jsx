@@ -10,12 +10,11 @@ import format from 'date-fns/format';
 import { Avatar, Button } from '@mui/material';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-import { compareAsc } from 'date-fns';
+import { compareDesc } from 'date-fns';
 
 export default function CircuitsWithPaymentList({ circuits = [] }) {
-  const createDate = (timeStamp) => new Date(timeStamp);
   const statusAvartar = (expDate) => {
-    return compareAsc(expDate, Date.now()) > 0 ? (
+    return compareDesc(expDate, Date.now()) > 0 ? (
       <Avatar sx={{ bgcolor: 'success.main' }}>
         <CheckOutlinedIcon />
       </Avatar>
@@ -53,10 +52,10 @@ export default function CircuitsWithPaymentList({ circuits = [] }) {
               <TableCell align='right'>{circuit.activationDate}</TableCell>
               <TableCell align='right'>{circuit.monthlyCost}</TableCell>
               <TableCell align='right'>
-                {format(Number(circuit.lastPaymentDate), 'PP')}
+                {format(circuit.lastPaymentDate, 'PP')}
               </TableCell>
               <TableCell align='right'>
-                {format(Number(circuit.paymentExpiryDate), 'PP')}
+                {format(circuit.paymentExpiryDate, 'PP')}
               </TableCell>
               <TableCell align='right'>{circuit.amountPaid}</TableCell>
               <TableCell align='right'>{circuit.balance}</TableCell>

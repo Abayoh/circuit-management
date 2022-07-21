@@ -1,37 +1,282 @@
 {
   "circuits": [
     {
-      "id": "cir1",
+      "id": "cir3",
+      "name": "MON-TEL_1S/0001",
+      "customerId": "cus1",
+      "capacity": "STM1",
+      "cost": 4500
+    },
+    {
+      "id": "cir4",
+      "name": "LIS-MON_16S/0001",
+      "customerId": "cus1",
+      "capacity": "STM16",
+      "cost": 7500
+    },
+    {
+      "id": "cir5",
+      "name": "MON-TEL_1S/0002",
+      "customerId": "cus1",
+      "capacity": "STM1",
+      "cost": 5500
+    },
+    {
+      "id": "cir6",
+      "name": "ACC-MON_4S/0002",
+      "customerId": "cus1",
+      "capacity": "STM4",
+      "cost": 2500
+    },
+    {
+      "id": "cir7",
+      "name": "MON-TEL_16S/0001",
+      "customerId": "cus1",
+      "capacity": "STM16",
+      "cost": 3500
+    },
+    {
+      "id": "cir8",
       "name": "MON-TEL_1S/0001",
       "customerId": "cus2",
       "capacity": "STM1",
       "cost": 4500
     },
     {
+      "id": "cir9",
+      "name": "ACC-MON_4S/0001",
+      "customerId": "cus2",
+      "capacity": "STM4",
+      "cost": 5000
+    },
+    {
+      "id": "cir10",
+      "name": "MON-TEL_16S/0001",
+      "customerId": "cus2",
+      "capacity": "STM16",
+      "cost": 6500
+    },
+    {
+      "id": "cir11",
+      "name": "MON-TEL_4S/0001",
+      "customerId": "cus2",
+      "capacity": "STM4",
+      "cost": 3000
+    },
+    {
+      "id": "cir12",
+      "name": "LIS-MON_16S/0001",
+      "customerId": "cus2",
+      "capacity": "STM16",
+      "cost": 2500
+    },
+    {
+      "id": "cir13",
+      "name": "MON-TEL_4S/0002",
+      "customerId": "cus3",
+      "capacity": "STM2",
+      "cost": 4200
+    },
+    {
+      "id": "cir14",
+      "name": "MON-TEL_1S/0003",
+      "customerId": "cus3",
+      "capacity": "STM1",
+      "cost": 1500
+    },
+    {
+      "id": "cir15",
+      "name": "MON-TEL_16S/0003",
+      "customerId": "cus3",
+      "capacity": "STM1",
+      "cost": 7500
+    },
+    {
+      "id": "cir16",
+      "name": "LIS-MON_16S/0001",
+      "customerId": "cus3",
+      "capacity": "STM16",
+      "cost": 8500
+    },
+    {
+      "id": "cir17",
+      "name": "ACC-MON_4S/0003",
+      "customerId": "cus3",
+      "capacity": "STM4",
+      "cost": 3500
+    },
+    {
+      "id": "cir18",
+      "name": "ACC-MON_10GE/0002",
+      "customerId": "cus4",
+      "capacity": "10GE",
+      "cost": 1500
+    },
+    {
+      "id": "cir19",
+      "name": "MON-TEL_16S/0004",
+      "customerId": "cus4",
+      "capacity": "STM16",
+      "cost": 6100
+    },
+    {
+      "id": "cir20",
+      "name": "MON-TEL_10GE/0005",
+      "customerId": "cus4",
+      "capacity": "10GE",
+      "cost": 1500
+    },
+    {
+      "id": "cir21",
+      "name": "MON-TEL_16S/0002",
+      "customerId": "cus4",
+      "capacity": "STM16",
+      "cost": 9500
+    },
+    {
+      "id": "cir22",
+      "name": "LIS-MON_1GE/0003",
+      "customerId": "cus4",
+      "capacity": "1GE",
+      "cost": 1500
+    },
+    {
+      "id": "cir23",
+      "name": "LIS-MON_10GE/0003",
+      "customerId": "cus5",
+      "capacity": "10GE",
+      "cost": 1500
+    },
+    {
+      "id": "cir24",
+      "name": "LIS-MON_1GE/0001",
+      "customerId": "cus5",
+      "capacity": "1GE",
+      "cost": 5100
+    },
+    {
+      "id": "cir25",
+      "name": "LIS-MON_16S/0005",
+      "customerId": "cus5",
+      "capacity": "STM16",
+      "cost": 1100
+    },
+    {
+      "id": "cir26",
+      "name": "LIS-MON_10GE/0002",
+      "customerId": "cus5",
+      "capacity": "10GE",
+      "cost": 1500
+    },
+    {
+      "id": "cir27",
+      "name": "LIS-MON_1GE/0002",
+      "customerId": "cus5",
+      "capacity": "1GE",
+      "cost": 1500
+    },
+    {
+      "id": "cir28",
+      "name": "ACC-MON_1S/0001",
+      "customerId": "cus6",
+      "capacity": "STM1",
+      "cost": 4500
+    },
+    {
+      "id": "cir29",
+      "name": "ACC-MON_1S/0002",
+      "customerId": "cus6",
+      "capacity": "STM1",
+      "cost": 9500
+    },
+    {
+      "id": "cir30",
+      "name": "LIS-MON_1S/0001",
+      "customerId": "cus6",
+      "capacity": "STM1",
+      "cost": 1500
+    },
+    {
+      "id": "cir31",
+      "name": "ACC-MON_4S/0001",
+      "customerId": "cus6",
+      "capacity": "STM4",
+      "cost": 2500
+    },
+    {
+      "id": "cir32",
+      "name": "MON-TEL_1S/0001",
+      "customerId": "cus6",
+      "capacity": "STM1",
+      "cost": 3500
+    },
+    {
+      "id": "cir33",
+      "name": "ACC-MON_1S/0001",
+      "customerId": "cus7",
+      "capacity": "STM1",
+      "cost": 4500
+    },
+    {
+      "id": "cir34",
+      "name": "ACC-MON_1S/0002",
+      "customerId": "cus7",
+      "capacity": "STM1",
+      "cost": 4500
+    },
+    {
+      "id": "cir35",
+      "name": "ACC-MON_16S/0001",
+      "customerId": "cus7",
+      "capacity": "STM16",
+      "cost": 9500
+    },
+    {
+      "id": "cir36",
+      "name": "LIS-MON_1S/0001",
+      "customerId": "cus7",
+      "capacity": "STM1",
+      "cost": 4500
+    },
+    {
+      "id": "cir37",
+      "name": "ACC-MON_4S/0001",
+      "customerId": "cus7",
+      "capacity": "STM4",
+      "cost": 2500
+    },
+    {
+      "id": "cir1",
+      "name": "MON-TEL_1S/0002",
+      "customerId": "cus2",
+      "capacity": "STM1",
+      "cost": 4000
+    },
+    {
       "id": "cir2",
       "customerId": "cus1",
-      "name": "MON-TEL_1S/0002",
-      "capacity": "STM1",
+      "name": "MON-TEL_4S/0003",
+      "capacity": "STM4",
       "cost": 4500
     },
     {
       "id": "cir3",
       "customerId": "cus3",
-      "name": "MON-TEL_4S/0001",
+      "name": "MON-TEL_10GE/0002",
       "capacity": "STM4",
       "cost": 4500
     },
     {
       "id": "cir5",
       "customerId": "cus5",
-      "name": "MON-TEL_16S/0002",
-      "capacity": "STM1",
+      "name": "MON-TEL_1GE/0002",
+      "capacity": "1GE",
       "cost": 4500
     },
     {
       "id": "cir6",
       "customerId": "cus6",
-      "name": "MON-TEL_16S/0002",
+      "name": "MON-TEL_10GE/0002",
       "capacity": "STM16",
       "cost": 4500
     },
@@ -164,7 +409,87 @@
   "payments": [
     {
       "id": "pym1",
-      "amount": 4500,
+      "amount": 4000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir1",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym8",
+      "amount": 4000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir1",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1648684800000
+      },
+      "balance": 0,
+      "dateDeposited": "1643702400000"
+    },
+    {
+      "id": "pym9",
+      "amount": 4000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir1",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym10",
+      "amount": 4000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir1",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym11",
+      "amount": 4000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir1",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym11",
+      "amount": 4000,
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
@@ -172,11 +497,971 @@
       "cheQueImgUrl": "",
       "current": true,
       "billed": {
-        "from": "1640995200",
-        "to": "1648684800000"
+        "from": 1654066800000,
+        "to": 1656572400000
       },
-      "balance": 5000,
-      "dateDeposited": "1641168000000"
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym12",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir8",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym13",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir8",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym14",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir8",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym15",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir8",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym16",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir8",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym17",
+      "amount": 4500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir8",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym18",
+      "amount": 5000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir9",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym19",
+      "amount": 5000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir9",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym20",
+      "amount": 5000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir9",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym21",
+      "amount": 5000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir9",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym22",
+      "amount": 5000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir9",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym23",
+      "amount": 5000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir9",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym24",
+      "amount": 6500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir10",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym25",
+      "amount": 6500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir10",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym26",
+      "amount": 6500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir10",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym27",
+      "amount": 6500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir10",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym28",
+      "amount": 6500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir10",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym29",
+      "amount": 6500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir10",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym30",
+      "amount": 3000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir11",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym31",
+      "amount": 3000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir11",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym32",
+      "amount": 3000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir11",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym33",
+      "amount": 3000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir11",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym34",
+      "amount": 3000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir11",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym35",
+      "amount": 3000,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir11",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym36",
+      "amount": 2500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir12",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym37",
+      "amount": 2500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir12",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym38",
+      "amount": 2500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir12",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym39",
+      "amount": 2500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir12",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym40",
+      "amount": 2500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir12",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym41",
+      "amount": 2500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus2",
+      "circuitId": "cir12",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym41",
+      "amount": 4200,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir13",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym42",
+      "amount": 4200,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir13",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym43",
+      "amount": 4200,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir13",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym44",
+      "amount": 4200,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir13",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym45",
+      "amount": 4200,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir13",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym46",
+      "amount": 4200,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir13",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym47",
+      "amount": 1500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir14",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym48",
+      "amount": 1500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir14",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym49",
+      "amount": 1500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir14",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym50",
+      "amount": 1500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir14",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym51",
+      "amount": 1500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir14",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym52",
+      "amount": 1500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir14",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym53",
+      "amount": 7500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir15",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym54",
+      "amount": 7500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir15",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym55",
+      "amount": 7500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir15",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym56",
+      "amount": 7500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir15",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym57",
+      "amount": 7500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir15",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym58",
+      "amount": 7500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir15",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym59",
+      "amount": 8500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir16",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym60",
+      "amount": 8500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir16",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym61",
+      "amount": 8500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir16",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym62",
+      "amount": 8500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir16",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym63",
+      "amount": 8500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir16",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym64",
+      "amount": 8500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir16",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1656572400000
+      },
+      "balance": 0,
+      "dateDeposited": 1654066800000
+    },
+    {
+      "id": "pym65",
+      "amount": 3500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir17",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1641024000000,
+        "to": 1643616000000
+      },
+      "balance": 0,
+      "dateDeposited": 1641024000000
+    },
+    {
+      "id": "pym66",
+      "amount": 3500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir17",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1643702400000,
+        "to": 1646035200000
+      },
+      "balance": 0,
+      "dateDeposited": 1643702400000
+    },
+    {
+      "id": "pym67",
+      "amount": 3500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir17",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1646121600000,
+        "to": 1648710000000
+      },
+      "balance": 0,
+      "dateDeposited": 1646121600000
+    },
+    {
+      "id": "pym68",
+      "amount": 3500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir17",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1648796400000,
+        "to": 1651302000000
+      },
+      "balance": 0,
+      "dateDeposited": 1648796400000
+    },
+    {
+      "id": "pym69",
+      "amount": 3500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir17",
+      "cheQueImgUrl": "",
+      "current": false,
+      "billed": {
+        "from": 1651388400000,
+        "to": 1653980400000
+      },
+      "balance": 0,
+      "dateDeposited": 1651388400000
+    },
+    {
+      "id": "pym70",
+      "amount": 3500,
+      "receiveBy": "Josehpus Brown",
+      "customerName": "PowerNet",
+      "customerId": "cus3",
+      "circuitId": "cir17",
+      "cheQueImgUrl": "",
+      "current": true,
+      "billed": {
+        "from": 1654066800000,
+        "to": 1654066800000
+      },
+      "balance": 0,
+      "dateDeposited": 1656572400000
     },
     {
       "id": "pym2",
@@ -186,13 +1471,12 @@
       "customerId": "cus1",
       "circuitId": "cir2",
       "cheQueImgUrl": "",
-      "current": true,
       "billed": {
-        "from": "1640995200",
-        "to": "1648684800000"
+        "from": 1640995200,
+        "to": 1648684800000
       },
       "balance": 5000,
-      "dateDeposited": "1641168000000"
+      "dateDeposited": 1641168000000
     },
     {
       "id": "pym3",
@@ -202,13 +1486,12 @@
       "customerId": "cus4",
       "circuitId": "cir4",
       "cheQueImgUrl": "",
-      "current": true,
       "billed": {
-        "from": "1640995200",
-        "to": "1648684800000"
+        "from": 1640995200,
+        "to": 1648684800000
       },
       "balance": 5000,
-      "dateDeposited": "1641168000000"
+      "dateDeposited": 1641168000000
     },
     {
       "id": "pym4",
@@ -218,13 +1501,12 @@
       "customerId": "cus3",
       "circuitId": "cir3",
       "cheQueImgUrl": "",
-      "current": true,
       "billed": {
-        "from": "1640995200",
-        "to": "1648684800000"
+        "from": 1640995200,
+        "to": 1648684800000
       },
       "balance": 5000,
-      "dateDeposited": "1641168000000"
+      "dateDeposited": 1641168000000
     },
     {
       "id": "pym5",
@@ -234,13 +1516,12 @@
       "customerId": "cus5",
       "circuitId": "cir5",
       "cheQueImgUrl": "",
-      "current": true,
       "billed": {
-        "from": "1640995200",
-        "to": "1648684800000"
+        "from": 1640995200,
+        "to": 1648684800000
       },
       "balance": 5000,
-      "dateDeposited": "1641168000000"
+      "dateDeposited": 1641168000000
     },
     {
       "id": "pym6",
@@ -250,13 +1531,12 @@
       "customerId": "cus6",
       "circuitId": "cir6",
       "cheQueImgUrl": "",
-      "current": true,
       "billed": {
-        "from": "1640995200",
-        "to": "1648684800000"
+        "from": 1640995200,
+        "to": 1648684800000
       },
       "balance": 5000,
-      "dateDeposited": "1641168000000"
+      "dateDeposited": 1641168000000
     },
     {
       "id": "pym7",
@@ -268,11 +1548,14 @@
       "cheQueImgUrl": "",
       "current": true,
       "billed": {
-        "from": "1640995200",
-        "to": "1648684800000"
+        "from": 1640995200,
+        "to": 1648684800000
       },
-      "balance": 5000,
-      "dateDeposited": "1641168000000"
+      "balance": {
+        "amount": 5000,
+        "clear": false
+      },
+      "dateDeposited": 1641168000000
     }
   ],
   "logs": [
