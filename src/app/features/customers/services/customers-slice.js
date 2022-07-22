@@ -23,7 +23,7 @@ export const addCustomers = createAsyncThunk(
   async (customers, thunkApi) => {
     const response = await axios.post(URL, customers);
     return response.data
-  })
+})
 
 const customersSlice = createSlice({
   name: 'customers',

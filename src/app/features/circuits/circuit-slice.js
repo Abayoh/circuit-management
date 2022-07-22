@@ -39,6 +39,7 @@ const circuitsSlice = createSlice({
 export const selectAllCircuits = (state) => state.circuits.circuits;
 export const getCircuitsStatus = (state) => state.circuits.status;
 export const getCircuitsError = (state) => state.circuits.error;
+
 export const selectCircuitByCustomerId = createSelector(
   [selectAllCircuits, (state, customerId)=>customerId],
   (circuits, customerId)=>circuits.filter(

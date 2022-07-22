@@ -286,6 +286,13 @@
       "name": "MON-TEL_16S/0004",
       "capacity": "STM16",
       "cost": 4500
+    },
+    {
+      "id": "cir7",
+      "customerId": "81c1128b-9807-4bf3-9f7f-bbc1e04c12f0",
+      "name": "MON-TEL_16S/0004",
+      "capacity": "STM16",
+      "cost": 4500
     }
   ],
   "customers": [
