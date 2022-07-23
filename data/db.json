@@ -391,6 +391,42 @@
         "county": "Montserrado"
       },
       "contacts": 231886255993
+    },
+    {
+      "id": "b7f50693-d69c-481c-b01c-71b6f3cc3668",
+      "name": "Jenkins Mulbah",
+      "type": "stock holder",
+      "address": {
+        "address1": "New matadi sinkor",
+        "street": "New matadi",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": 1222
+    },
+    {
+      "id": "95303752-24f6-4a3e-8fdd-71184fada9d9",
+      "name": "Jenkins Mulbah",
+      "type": "stock holder",
+      "address": {
+        "address1": "New matadi sinkor",
+        "street": "ksjhd",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": 1223
+    },
+    {
+      "id": "6f95c433-2a99-41d7-b901-541a35e6b890",
+      "name": "Jenkins Mulbah",
+      "type": "stock holder",
+      "address": {
+        "address1": "New matadi sinkor",
+        "street": "New Matadi",
+        "city": "Monrovia",
+        "county": "Montserrado"
+      },
+      "contacts": 889009847
     }
   ],
   "users": [

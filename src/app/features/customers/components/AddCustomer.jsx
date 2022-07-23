@@ -1,5 +1,6 @@
-import PageToolsbar from '../../../components/PageToolsbar'
-import Box from '@mui/material/Box'
+import { useState } from 'react';
+import PageToolsbar from '../../../components/PageToolsbar';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import MenuItem from '@mui/material/MenuItem';
@@ -11,12 +12,14 @@ import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCustomers, getCustomersStatus } from '../services/customers-slice'
+import { useSnackbar } from 'notistack'
 
 function AddCustomer() {
   const dispatch = useDispatch();
   const status = useSelector(getCustomersStatus);
   const customerUid = uuidv4()
-
+  const { enqueueSnackbar } = useSnackbar()
+  
   const customerForm = useFormik({
     initialValues: {
       customername: '',
@@ -57,6 +60,13 @@ function AddCustomer() {
         contacts: values.contact
       }
       dispatch(addCustomers(customer));
+      enqueueSnackbar('Custoners Save Successfully!', {
+        variant: 'success', anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'right'
+        },
+        autoHideDuration: 3000
+      })
       customerForm.resetForm()
     },
   })
@@ -65,7 +75,7 @@ function AddCustomer() {
     <>
       <PageToolsbar pageTitle="Add customers" linkName="Customers" linkPath="/customers" />
       <Box sx={{ mt: 4 }} >
-        <form  noValidate onSubmit={customerForm.handleSubmit}>
+        <form noValidate onSubmit={customerForm.handleSubmit}>
           <Grid container spacing={3} >
             <Grid item md={6} xs={12} >
               <TextField

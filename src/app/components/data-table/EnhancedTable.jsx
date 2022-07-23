@@ -48,13 +48,13 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
+ 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = rows.map((n) => n.name);
@@ -151,7 +151,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
                       </TableCell>
                       {headCells.map((cell, index) => (
                         <TableCell
-                          key={index}
+                          key={cell.id}
                           align={cell.numeric ? 'right' : 'left'}
                         >
                           {row[cell.id]}

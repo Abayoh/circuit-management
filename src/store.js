@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import circuitReducer from './app/features/circuits/circuit-slice';
+import circuitReducer from './app/features/circuits/services/circuit-slice';
 import customersReducer from './app/features/customers/services/customers-slice';
 import logsReducer from './app/features/logs/logs-slice';
 import paymentsReducer from './app/features/payments/payments-slice';

@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCustomerById } from '../services/customers-slice';
-import { selectCircuitByCustomerId } from '../../circuits/circuit-slice';
+import { selectCircuitByCustomerId } from '../../circuits/services/circuit-slice';
 import { selectPaymentsByCustomerId } from '../../payments/payments-slice';
 import PageHeader from '../../../components/PageTitle';
 import CircuitsWithPaymentList from './CircuitWithPaymentList';
