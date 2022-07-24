@@ -61,7 +61,8 @@ function AddCustomer() {
       }
       dispatch(addCustomers(customer));
       enqueueSnackbar('Custoners Save Successfully!', {
-        variant: 'success', anchorOrigin: {
+        variant: 'success', 
+        anchorOrigin: {
           vertical: 'top',
           horizontal: 'right'
         },

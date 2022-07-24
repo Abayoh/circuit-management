@@ -293,6 +293,20 @@
       "name": "MON-TEL_16S/0004",
       "capacity": "STM16",
       "cost": 4500
+    },
+    {
+      "id": "701e957c-87f6-4dd7-a10a-6bd9044f188d",
+      "name": "Cir4",
+      "customerId": "cus7",
+      "capacity": "500 mm",
+      "cost": 400
+    },
+    {
+      "id": "6a9c43d0-81d7-4436-9556-f9cbc776b552",
+      "name": "MK-Cir ",
+      "customerId": "cus7",
+      "capacity": "500 kw",
+      "cost": 700
     }
   ],
   "customers": [
