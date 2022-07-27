@@ -11,16 +11,35 @@ import * as Yup from 'yup'
 import TextInput from '../../../components/form-inputs/TextInput.jsx';
 import SelectInput from '../../../components/form-inputs/SelectInput';
 import InputWithAdorment from '../../../components/form-inputs/InputWithAdorment';
+import SelectFliter from '../../../components/form-inputs/SelectFliter';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCircuits } from '../services/circuit-slice';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4, validate } from 'uuid';
 import { useSnackbar } from 'notistack';
 
 function AddCircuitsForm({ customers }) {
-    const { enqueueSnackbar } = useSnackbar()
     const dispatch = useDispatch();
-    const { message, error, status } = useSelector((state) => state.circuits)
-    
+    const { message, status } = useSelector((state) => state.circuits)
+    const { enqueueSnackbar } = useSnackbar()
+
+    const formValues = {
+        name: "",
+        customerId: "",
+        capacity: "",
+        cost: ""
+    }
+
+    const validateForm = {
+        name: Yup.string()
+            .required('Circuits name is required'),
+        customerId: Yup.string()
+            .required('please select a customer'),
+        capacity: Yup.string()
+            .required('Capacity is required'),
+        cost: Yup.number()
+            .required('Cost is required'),
+    }
+
     const handleSubmit = (values, action) => {
         const id = uuidv4();
         const circuit = { id, ...values }
@@ -36,25 +55,11 @@ function AddCircuitsForm({ customers }) {
         )
         action.resetForm()
     }
+
     return (
         <Formik
-            initialValues={{
-                name: "",
-                customerId: "",
-                capacity: "",
-                cost: ""
-            }}
-            validationSchema={Yup.object({
-                name: Yup.string()
-                    .required('Circuits name is required'),
-                customerId: Yup.string()
-                    .required('please select a customer'),
-                capacity: Yup.string()
-                    .required('Capacity is required'),
-                cost: Yup.number()
-                    .required('Cost is required'),
-            })
-            }
+            initialValues={formValues}
+            validationSchema={Yup.object(validateForm)}
             onSubmit={handleSubmit}
         >
             <Form>
@@ -69,6 +74,11 @@ function AddCircuitsForm({ customers }) {
                     </Grid>
                     <Grid item md={6} xs={12}>
                         {/* todo: add search fliter for get customer */}
+                        {/* <SelectFliter
+                            label="Select Customer"
+                            name="customerId"
+                            options={customers}
+                        /> */}
                         <SelectInput
                             label="Select Customer"
                             name="customerId"
@@ -101,6 +111,7 @@ function AddCircuitsForm({ customers }) {
                 </Grid>
                 <Box sx={{ display: 'flex', justifyContent: 'flex-end', p: 2 }} >
                     <LoadingButton
+                        loading={status === 'loading' ? true : false}
                         loadingPosition="start"
                         startIcon={<SaveIcon />}
                         type="submit"

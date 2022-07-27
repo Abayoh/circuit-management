@@ -286,27 +286,6 @@
       "name": "MON-TEL_16S/0004",
       "capacity": "STM16",
       "cost": 4500
-    },
-    {
-      "id": "cir7",
-      "customerId": "81c1128b-9807-4bf3-9f7f-bbc1e04c12f0",
-      "name": "MON-TEL_16S/0004",
-      "capacity": "STM16",
-      "cost": 4500
-    },
-    {
-      "id": "701e957c-87f6-4dd7-a10a-6bd9044f188d",
-      "name": "Cir4",
-      "customerId": "cus7",
-      "capacity": "500 mm",
-      "cost": 400
-    },
-    {
-      "id": "6a9c43d0-81d7-4436-9556-f9cbc776b552",
-      "name": "MK-Cir ",
-      "customerId": "cus7",
-      "capacity": "500 kw",
-      "cost": 700
     }
   ],
   "customers": [
@@ -393,54 +372,6 @@
         "county": "Montserrado"
       },
       "contacts": "+231886255993"
-    },
-    {
-      "id": "81c1128b-9807-4bf3-9f7f-bbc1e04c12f0",
-      "name": "Jenkins Mulbah",
-      "type": "regular",
-      "address": {
-        "address1": "New matadi sinkor",
-        "street": "new matadi sinkor",
-        "city": "Monrovia",
-        "county": "Montserrado"
-      },
-      "contacts": 231886255993
-    },
-    {
-      "id": "b7f50693-d69c-481c-b01c-71b6f3cc3668",
-      "name": "Jenkins Mulbah",
-      "type": "stock holder",
-      "address": {
-        "address1": "New matadi sinkor",
-        "street": "New matadi",
-        "city": "Monrovia",
-        "county": "Montserrado"
-      },
-      "contacts": 1222
-    },
-    {
-      "id": "95303752-24f6-4a3e-8fdd-71184fada9d9",
-      "name": "Jenkins Mulbah",
-      "type": "stock holder",
-      "address": {
-        "address1": "New matadi sinkor",
-        "street": "ksjhd",
-        "city": "Monrovia",
-        "county": "Montserrado"
-      },
-      "contacts": 1223
-    },
-    {
-      "id": "6f95c433-2a99-41d7-b901-541a35e6b890",
-      "name": "Jenkins Mulbah",
-      "type": "stock holder",
-      "address": {
-        "address1": "New matadi sinkor",
-        "street": "New Matadi",
-        "city": "Monrovia",
-        "county": "Montserrado"
-      },
-      "contacts": 889009847
     }
   ],
   "users": [
