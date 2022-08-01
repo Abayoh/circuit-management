@@ -37,21 +37,21 @@
     },
     {
       "id": "cir8",
-      "name": "MON-TEL_1S/0001",
+      "name": "MON-TEL_1S/00013",
       "customerId": "cus2",
       "capacity": "STM1",
       "cost": 4500
     },
     {
       "id": "cir9",
-      "name": "ACC-MON_4S/0001",
+      "name": "ACC-MON_16S/0002",
       "customerId": "cus2",
       "capacity": "STM4",
       "cost": 5000
     },
     {
       "id": "cir10",
-      "name": "MON-TEL_16S/0001",
+      "name": "MON-TEL_16S/0005",
       "customerId": "cus2",
       "capacity": "STM16",
       "cost": 6500
@@ -65,7 +65,7 @@
     },
     {
       "id": "cir12",
-      "name": "LIS-MON_16S/0001",
+      "name": "LIS-MON_16S/0002",
       "customerId": "cus2",
       "capacity": "STM16",
       "cost": 2500
@@ -93,7 +93,7 @@
     },
     {
       "id": "cir16",
-      "name": "LIS-MON_16S/0001",
+      "name": "LIS-MON_16S/0003",
       "customerId": "cus3",
       "capacity": "STM16",
       "cost": 8500
@@ -177,7 +177,7 @@
     },
     {
       "id": "cir28",
-      "name": "ACC-MON_1S/0001",
+      "name": "ACC-MON_1GE/0001",
       "customerId": "cus6",
       "capacity": "STM1",
       "cost": 4500
@@ -191,21 +191,21 @@
     },
     {
       "id": "cir30",
-      "name": "LIS-MON_1S/0001",
+      "name": "LIS-MON_1S/0002",
       "customerId": "cus6",
       "capacity": "STM1",
       "cost": 1500
     },
     {
       "id": "cir31",
-      "name": "ACC-MON_4S/0001",
+      "name": "ACC-MON_4S/0004",
       "customerId": "cus6",
       "capacity": "STM4",
       "cost": 2500
     },
     {
       "id": "cir32",
-      "name": "MON-TEL_1S/0001",
+      "name": "MON-TEL_1S/0004",
       "customerId": "cus6",
       "capacity": "STM1",
       "cost": 3500
@@ -219,9 +219,9 @@
     },
     {
       "id": "cir34",
-      "name": "ACC-MON_1S/0002",
+      "name": "ACC-MON_1GE/0002",
       "customerId": "cus7",
-      "capacity": "STM1",
+      "capacity": "1GE",
       "cost": 4500
     },
     {
@@ -247,7 +247,7 @@
     },
     {
       "id": "cir1",
-      "name": "MON-TEL_1S/0002",
+      "name": "MON-TEL_1S/0005",
       "customerId": "cus2",
       "capacity": "STM1",
       "cost": 4000
@@ -257,34 +257,6 @@
       "customerId": "cus1",
       "name": "MON-TEL_4S/0003",
       "capacity": "STM4",
-      "cost": 4500
-    },
-    {
-      "id": "cir3",
-      "customerId": "cus3",
-      "name": "MON-TEL_10GE/0002",
-      "capacity": "STM4",
-      "cost": 4500
-    },
-    {
-      "id": "cir5",
-      "customerId": "cus5",
-      "name": "MON-TEL_1GE/0002",
-      "capacity": "1GE",
-      "cost": 4500
-    },
-    {
-      "id": "cir6",
-      "customerId": "cus6",
-      "name": "MON-TEL_10GE/0002",
-      "capacity": "STM16",
-      "cost": 4500
-    },
-    {
-      "id": "cir7",
-      "customerId": "cus7",
-      "name": "MON-TEL_16S/0004",
-      "capacity": "STM16",
       "cost": 4500
     }
   ],
@@ -391,41 +363,31 @@
       "id": "usr1",
       "name": "abayoh",
       "email": "abayoh@ccl.com.lr",
-      "role": [
-        "admin"
-      ]
+      "role": ["admin"]
     },
     {
       "id": "usr2",
       "name": "jbrown",
       "email": "jbrown@ccl.com.lr",
-      "role": [
-        "user"
-      ]
+      "role": ["user"]
     },
     {
       "id": "usr3",
       "name": "abayoh",
       "email": "nkevin@ccl.com.lr",
-      "role": [
-        "user"
-      ]
+      "role": ["user"]
     },
     {
       "id": "usr7",
       "name": "pwhei",
       "email": "pwhei@ccl.com.lr",
-      "role": [
-        "admin"
-      ]
+      "role": ["admin"]
     },
     {
       "id": "usr8",
       "name": "pwhei",
       "email": "pwhei@ccl.com.lr",
-      "role": [
-        "admin"
-      ]
+      "role": ["admin"]
     }
   ],
   "payments": [
@@ -436,7 +398,8 @@
       "customerName": "PowerNet",
       "customerId": "cus2",
       "circuitId": "cir1",
-      "cheQueImgUrl": "",
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -452,7 +415,8 @@
       "customerName": "PowerNet",
       "customerId": "cus2",
       "circuitId": "cir1",
-      "cheQueImgUrl": "",
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -468,7 +432,8 @@
       "customerName": "PowerNet",
       "customerId": "cus2",
       "circuitId": "cir1",
-      "cheQueImgUrl": "",
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -484,7 +449,8 @@
       "customerName": "PowerNet",
       "customerId": "cus2",
       "circuitId": "cir1",
-      "cheQueImgUrl": "",
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -494,13 +460,17 @@
       "dateDeposited": 1648796400000
     },
     {
-      "id": "pym11",
+      "id": "pym73",
       "amount": 4000,
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir1",
-      "cheQueImgUrl": "",
+      "circuit": {
+        "name": "MON-TEL_1S/0005",
+        "cost": 4000
+      },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -515,8 +485,12 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir1",
-      "cheQueImgUrl": "",
+      "circuit": {
+        "name": "MON-TEL_1S/0005",
+        "cost": 4000
+      },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -531,8 +505,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir8",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/00013", "cost": 4500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -547,8 +522,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir8",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/00013", "cost": 4500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -563,8 +539,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir8",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/00013", "cost": 4500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -579,8 +556,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir8",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/00013", "cost": 4500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -595,8 +573,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir8",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/00013", "cost": 4500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -611,8 +590,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir8",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/00013", "cost": 4500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -627,8 +607,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir9",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_16S/0002", "cost": 5000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -643,8 +624,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir9",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_16S/0002", "cost": 5000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -659,8 +641,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir9",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_16S/0002", "cost": 5000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -675,8 +658,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir9",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_16S/0002", "cost": 5000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -691,8 +675,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir9",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_16S/0002", "cost": 5000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -707,8 +692,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir9",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_16S/0002", "cost": 5000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -723,8 +709,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir10",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0005", "cost": 6500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -739,8 +726,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir10",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0005", "cost": 6500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -755,8 +743,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir10",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0005", "cost": 6500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -771,9 +760,10 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir10",
-      "cheQueImgUrl": "",
-      "current": true,
+      "circuit": { "name": "MON-TEL_16S/0005", "cost": 6500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
+      "current": false,
       "billed": {
         "from": 1648796400000,
         "to": 1651302000000
@@ -787,8 +777,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir10",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0005", "cost": 6500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -803,8 +794,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir10",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0005", "cost": 6500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -819,8 +811,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir11",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0001", "cost": 3000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -835,8 +828,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir11",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0001", "cost": 3000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -851,8 +845,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir11",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0001", "cost": 3000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -867,8 +862,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir11",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0001", "cost": 3000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -883,8 +879,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir11",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0001", "cost": 3000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -899,8 +896,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir11",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0001", "cost": 3000 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -915,8 +913,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir12",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0002", "cost": 2500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -931,8 +930,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir12",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0002", "cost": 2500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -947,8 +947,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir12",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0002", "cost": 2500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -963,8 +964,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir12",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0002", "cost": 2500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -979,8 +981,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir12",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0002", "cost": 2500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -995,8 +998,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus2",
-      "circuitId": "cir12",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0002", "cost": 2500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -1011,8 +1015,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir13",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0002", "cost": 4200 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -1027,8 +1032,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir13",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0002", "cost": 4200 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -1043,8 +1049,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir13",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0002", "cost": 4200 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -1059,8 +1066,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir13",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0002", "cost": 4200 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -1075,8 +1083,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir13",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0002", "cost": 4200 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -1091,8 +1100,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir13",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_4S/0002", "cost": 4200 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -1107,8 +1117,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir14",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/0003", "cost": 1500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -1123,8 +1134,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir14",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/0003", "cost": 1500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -1139,8 +1151,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir14",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/0003", "cost": 1500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -1155,8 +1168,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir14",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/0003", "cost": 1500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -1171,8 +1185,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir14",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/0003", "cost": 1500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -1187,8 +1202,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir14",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/0003", "cost": 1500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -1203,8 +1219,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir15",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0003", "cost": 7500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -1219,8 +1236,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir15",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0003", "cost": 7500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -1235,8 +1253,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir15",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0003", "cost": 7500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -1251,8 +1270,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir15",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0003", "cost": 7500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -1267,8 +1287,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir15",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0003", "cost": 7500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -1283,8 +1304,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir15",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0003", "cost": 7500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -1299,8 +1321,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir16",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0003", "cost": 8500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -1315,8 +1338,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir16",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0003", "cost": 8500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -1331,8 +1355,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir16",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0003", "cost": 8500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -1347,8 +1372,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir16",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0003", "cost": 8500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -1363,8 +1389,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir16",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0003", "cost": 8500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -1379,8 +1406,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir16",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0003", "cost": 8500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -1395,8 +1423,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir17",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_4S/0003", "cost": 3500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1641024000000,
@@ -1411,8 +1440,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir17",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_4S/0003", "cost": 3500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1643702400000,
@@ -1427,8 +1457,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir17",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_4S/0003", "cost": 3500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1646121600000,
@@ -1443,8 +1474,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir17",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_4S/0003", "cost": 3500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1648796400000,
@@ -1459,8 +1491,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir17",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_4S/0003", "cost": 3500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": false,
       "billed": {
         "from": 1651388400000,
@@ -1475,8 +1508,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "PowerNet",
       "customerId": "cus3",
-      "circuitId": "cir17",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_4S/0003", "cost": 3500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1654066800000,
@@ -1491,8 +1525,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "Electro Shock",
       "customerId": "cus1",
-      "circuitId": "cir2",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "alex", "cost": 50 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "billed": {
         "from": 1640995200,
         "to": 1648684800000
@@ -1506,8 +1541,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "TeliCell",
       "customerId": "cus4",
-      "circuitId": "cir4",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "LIS-MON_16S/0001", "cost": 7500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "billed": {
         "from": 1640995200,
         "to": 1648684800000
@@ -1521,8 +1557,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "Connect Liberia",
       "customerId": "cus3",
-      "circuitId": "cir3",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_1S/0001", "cost": 4500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "billed": {
         "from": 1640995200,
         "to": 1648684800000
@@ -1530,29 +1567,16 @@
       "balance": 5000,
       "dateDeposited": 1641168000000
     },
-    {
-      "id": "pym5",
-      "amount": 4500,
-      "receiveBy": "Josehpus Brown",
-      "customerName": "Orange Liberia",
-      "customerId": "cus5",
-      "circuitId": "cir5",
-      "cheQueImgUrl": "",
-      "billed": {
-        "from": 1640995200,
-        "to": 1648684800000
-      },
-      "balance": 5000,
-      "dateDeposited": 1641168000000
-    },
+
     {
       "id": "pym6",
       "amount": 4500,
       "receiveBy": "Josehpus Brown",
       "customerName": "MTN Lonestar Cell",
       "customerId": "cus6",
-      "circuitId": "cir6",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "ACC-MON_4S/0002", "cost": 2500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "billed": {
         "from": 1640995200,
         "to": 1648684800000
@@ -1566,8 +1590,9 @@
       "receiveBy": "Josehpus Brown",
       "customerName": "LTC Mobile",
       "customerId": "cus7",
-      "circuitId": "cir7",
-      "cheQueImgUrl": "",
+      "circuit": { "name": "MON-TEL_16S/0001", "cost": 3500 },
+      "chequeId": "",
+      "previousBalance": { "paymentId": "", "amount": 0 },
       "current": true,
       "billed": {
         "from": 1640995200,

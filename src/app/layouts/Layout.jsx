@@ -92,7 +92,7 @@ export default function Layout() {
         <Divider />
         <VerticalNavigation navigations={navLinks} open={open} />
       </Drawer>
-      <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
+      <Box component='main' sx={{ flexGrow: 1, p: 3, bgcolor: '#F4F5FA' }}>
         <DrawerHeader />
         <SuspenseWrapper>
           <RenderRoutes routes={routes} />

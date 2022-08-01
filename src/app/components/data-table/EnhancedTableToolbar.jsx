@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 
 const EnhancedTableToolbar = (props) => {
-  const { numSelected, tableLabel } = props;
+  const { numSelected, tableLabel, toolbarContent=(content)=><></> } = props;
 
   return (
     <Toolbar
@@ -47,25 +47,7 @@ const EnhancedTableToolbar = (props) => {
         </Typography>
       )}
 
-      {numSelected > 0 ? (
-        <Box sx={{ display: 'flex' }}>
-          <Tooltip title='Add Payment'>
-            <Button
-              color='success'
-              variant='outlined'
-              sx={{ height: '32px', whiteSpace: 'nowrap' }}
-            >
-              Add To Payment List
-            </Button>
-          </Tooltip>
-        </Box>
-      ) : (
-        <Tooltip title='Filter list'>
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
+      {toolbarContent(numSelected)}
     </Toolbar>
   );
 };
@@ -73,6 +55,7 @@ const EnhancedTableToolbar = (props) => {
 EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
   tableLabel: PropTypes.string.isRequired,
+  toolbarContent: PropTypes.func,
 };
 
 export default EnhancedTableToolbar;

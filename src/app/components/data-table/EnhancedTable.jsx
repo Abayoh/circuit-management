@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -42,7 +42,19 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function EnhancedTable({ rows, headCells, tableLabel }) {
+function EnhancedTable(
+  {
+    rows,
+    headCells,
+    tableLabel,
+    selectDisabled = false,
+    toolbarContent,
+    idFieldName,
+    onItemsSelected = (items) => {},
+    onItemsDeselected = (items) => {},
+  },
+  ref
+) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -55,22 +67,62 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
+  React.useImperativeHandle(
+    ref,
+    () => {
+      return { deselect };
+    },
+    []
+  );
+
+  const deselect = () => {
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
+  const handleSelectAllClick = (event) => {
+    if (event.target.checked) {
+      let deselectedItems = findAllDeselectedItems();
+      const newSelecteds = [...selected, ...deselectedItems];
+      onItemsSelected(deselectedItems);
+      setSelected(newSelecteds);
+      return;
+    }
+    onItemsDeselected([...selected]);
+    setSelected([]);
+  };
+
+  const findAllDeselectedItems = () => {
+    return rows.reduce((pItems, item) => {
+      if (selected.includes(item[idFieldName])) return pItems;
+      pItems.push(item[idFieldName]);
+      return pItems;
+    }, []);
+  };
+
+  const handleItemClick = (event, id) => {
+   
+    if (selectDisabled) return;
+
+    const selectedIndex = selected.indexOf(id);
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
+      addSelectedItem(id);
+    } else {
+      removeSelecedItem(id);
+    }
+  };
+
+  const addSelectedItem = (id) => {
+    let newSelected = [];
+    newSelected = newSelected.concat(selected, id);
+    onItemsSelected([id]);
+    setSelected(newSelected);
+  };
+
+  const removeSelecedItem = (id) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected = [];
+    if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0, -1));
@@ -80,7 +132,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
         selected.slice(selectedIndex + 1)
       );
     }
-
+    onItemsDeselected([id]);
     setSelected(newSelected);
   };
 
@@ -93,7 +145,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
     setPage(0);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (id) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -105,6 +157,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
         <EnhancedTableToolbar
           numSelected={selected.length}
           tableLabel={tableLabel}
+          toolbarContent={toolbarContent}
         />
         <TableContainer>
           <Table
@@ -120,6 +173,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
               headCells={headCells}
+              selectDisabled={selectDisabled}
             />
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
@@ -127,28 +181,32 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row[idFieldName]);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.name)}
+                      onClick={(event) =>
+                        handleItemClick(event, row[idFieldName])
+                      }
                       role='checkbox'
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row[idFieldName]}
                       selected={isItemSelected}
                     >
-                      <TableCell padding='checkbox'>
-                        <Checkbox
-                          color='primary'
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
+                      {!selectDisabled && (
+                        <TableCell padding='checkbox'>
+                          <Checkbox
+                            color='primary'
+                            checked={isItemSelected}
+                            inputProps={{
+                              'aria-labelledby': labelId,
+                            }}
+                          />
+                        </TableCell>
+                      )}
                       {headCells.map((cell, index) => (
                         <TableCell
                           key={index}
@@ -163,7 +221,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
               {emptyRows > 0 && (
                 <TableRow
                   style={{
-                    height:  53 * emptyRows,
+                    height: 53 * emptyRows,
                   }}
                 >
                   <TableCell colSpan={6} />
@@ -187,6 +245,7 @@ export default function EnhancedTable({ rows, headCells, tableLabel }) {
 }
 
 EnhancedTable.propTypes = {
+  idFieldName: PropTypes.string.isRequired,
   rows: PropTypes.array.isRequired,
   headCells: PropTypes.arrayOf(
     PropTypes.shape({
@@ -197,4 +256,10 @@ EnhancedTable.propTypes = {
     })
   ).isRequired,
   tableLabel: PropTypes.string.isRequired,
+  selectDisabled: PropTypes.bool,
+  toolbarContent: PropTypes.func,
+  onItemsSelected: PropTypes.func,
+  onItemsDeselected: PropTypes.func,
 };
+
+export default React.forwardRef(EnhancedTable);

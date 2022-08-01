@@ -1,87 +1,65 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { IconButton } from '@mui/material';
-import DelectIcon from '@mui/icons-material/Delete';
-
-const TAX_RATE = 0.07;
+import SpanningTableHeader from './SpanningTableHeader';
+import PropTypes from 'prop-types';
 
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;
 }
 
-function priceRow(qty, unit) {
-  return qty * unit;
-}
-
-function createRow(desc, qty, unit) {
-  const price = priceRow(qty, unit);
-  return { desc, qty, unit, price };
-}
-
-function subtotal(items) {
-  return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-}
-
-const rows = [
-  createRow('Paperclips (Box)', 100, 1.15),
-  createRow('Paper (Case)', 10, 45.99),
-  createRow('Waste Basket', 2, 17.99),
-];
-
-const invoiceSubtotal = subtotal(rows);
-const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-const invoiceTotal = invoiceTaxes + invoiceSubtotal;
-
-export default function SpanningTable() {
+export default function SpanningTable({
+  rows,
+  headCells,
+  enableActionCell = false,
+  actionButtons,
+}) {
+  const [total, setTotal] = useState(0);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label='spanning table'>
-        <TableHead>
-          <TableRow>
-            <TableCell>Desc</TableCell>
-            <TableCell align='right'>name</TableCell>
-            <TableCell align='right'>amount</TableCell>
-            <TableCell align='right'></TableCell>
-          </TableRow>
-        </TableHead>
+        <SpanningTableHeader
+          headCells={headCells}
+          enableActionCell={enableActionCell}
+        />
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.desc}>
-              <TableCell>{row.desc}</TableCell>
-              <TableCell align='right'>{row.qty}</TableCell>
-              <TableCell align='right'>{row.unit}</TableCell>
-              <TableCell align='right'>
-                <IconButton>
-                  <DelectIcon />
-                </IconButton>
-              </TableCell>
+              {headCells.map((cell, index) => (
+                <TableCell key={index} align={cell.numeric ? 'right' : 'left'}>
+                  {row[cell.id]}
+                </TableCell>
+              ))}
+              {enableActionCell && <TableCell>{actionButtons()}</TableCell>}
             </TableRow>
           ))}
-
           <TableRow>
-            <TableCell rowSpan={3} />
-            <TableCell colSpan={2}>Subtotal</TableCell>
-            <TableCell align='right'>{ccyFormat(invoiceSubtotal)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Tax</TableCell>
-            <TableCell align='right'>{`${(TAX_RATE * 100).toFixed(
-              0
-            )} %`}</TableCell>
-            <TableCell align='right'>{ccyFormat(invoiceTaxes)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell colSpan={2}>Total</TableCell>
-            <TableCell align='right'>{ccyFormat(invoiceTotal)}</TableCell>
+            <TableCell rowSpan={4} />
+            <TableCell colSpan={2} align='right'>
+              Total
+            </TableCell>
+            <TableCell align='right'>{ccyFormat(total)}</TableCell>
           </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
+
+SpanningTable.propTypes = {
+  rows: PropTypes.array.isRequired,
+  headCells: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      numeric: PropTypes.bool.isRequired,
+      disablePadding: PropTypes.bool.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  enableActionCell: PropTypes.bool,
+  actionButtons: PropTypes.func,
+};
