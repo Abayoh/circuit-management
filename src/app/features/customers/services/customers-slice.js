@@ -7,6 +7,7 @@ const URL = 'http://localhost:3500/customers';
 const initialState = {
   customers: [],
   status: 'idle', // idle | loading | succeeded | failed
+  message: '',
   error: null,
 };
 
@@ -48,9 +49,11 @@ const customersSlice = createSlice({
       .addCase(addCustomers.fulfilled, (state, action) => {
         state.status = "succeeded"
         state.customers.push(action.payload)
+        state.message = "Customer added successfully"
       })
       .addCase(addCustomers.rejected, (state, action) => {
         state.status = "faild"
+        state.message = action.error.message
         state.error = action.error.message
       })
   },

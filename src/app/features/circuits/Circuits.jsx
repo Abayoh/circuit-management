@@ -1,19 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  selectAllCircuits,
   getCircuitsError,
   getCircuitsStatus,
   fetchCircuits,
-} from './circuit-slice';
+} from './services/circuit-slice';
+import {
+  fetchCustomers,
+  getCustomersStatus,
+} from '../customers/services/customers-slice';
+import { fetchPayments, getPaymentsStatus } from '../payments/payments-slice';
+import { Outlet } from 'react-router-dom';
 
 const Circuits = () => {
-  const circuits = useSelector(selectAllCircuits);
-  const jsonCircuit = JSON.stringify(
-    circuits.map((c) => ({ [c.id]: { name: c.name, cost: c.cost } }))
+  const dispatch = useDispatch();
+  const customersStatus = useSelector(getCustomersStatus);
+  const circuitsStatus = useSelector(getCircuitsStatus);
+  const paymentsStatus = useSelector(getPaymentsStatus);
+
+  useEffect(() => {
+    if (
+      customersStatus === 'idle' &&
+      circuitsStatus === 'idle' &&
+      paymentsStatus === 'idle'
+    ) {
+      debugger;
+      dispatch(fetchCustomers());
+      dispatch(fetchCircuits());
+      dispatch(fetchPayments());
+    }
+  }, [customersStatus, dispatch, circuitsStatus, paymentsStatus]);
+
+  return (
+    <>
+      <Outlet />
+    </>
   );
-  console.log(jsonCircuit);
-  return <div>Circuits</div>;
 };
 
 export default Circuits;

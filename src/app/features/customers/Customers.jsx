@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCustomers, getCustomersStatus } from './services/customers-slice';
-import { fetchCircuits, getCircuitsStatus } from '../circuits/circuit-slice';
+import { fetchCircuits, getCircuitsStatus } from '../circuits/services/circuit-slice';
 import { fetchPayments, getPaymentsStatus } from '../payments/payments-slice';
 
 const Customers = () => {

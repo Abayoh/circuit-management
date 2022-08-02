@@ -9,8 +9,9 @@ import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getCustomerById } from '../services/customers-slice';
-import { selectCircuitByCustomerId } from '../../circuits/circuit-slice';
+import { selectCircuitByCustomerId } from '../../circuits/services/circuit-slice';
 import { selectCurrentPaymentsByCustomerId } from '../../payments/payments-slice';
+
 import PageHeader from '../../../components/PageTitle';
 import CurrentPaymentList from './CurrentPaymentList';
 import lastDayOfMonth from 'date-fns/lastDayOfMonth';

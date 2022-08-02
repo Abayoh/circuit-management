@@ -60,7 +60,7 @@ function EnhancedTable(
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-
+  
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -209,7 +209,7 @@ function EnhancedTable(
                       )}
                       {headCells.map((cell, index) => (
                         <TableCell
-                          key={index}
+                          key={cell.id}
                           align={cell.numeric ? 'right' : 'left'}
                         >
                           {row[cell.id]}

@@ -344,18 +344,6 @@
         "county": "Montserrado"
       },
       "contacts": "+231886255993"
-    },
-    {
-      "id": "81c1128b-9807-4bf3-9f7f-bbc1e04c12f0",
-      "name": "Jenkins Mulbah",
-      "type": "regular",
-      "address": {
-        "address1": "New matadi sinkor",
-        "street": "new matadi sinkor",
-        "city": "Monrovia",
-        "county": "Montserrado"
-      },
-      "contacts": 231886255993
     }
   ],
   "users": [

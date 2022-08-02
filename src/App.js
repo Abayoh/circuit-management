@@ -2,6 +2,7 @@
 import RouteGuide from './app/auth/RouteGuide';
 import { CssBaseline, createTheme, ThemeProvider } from '@mui/material';
 import Layout from './app/layouts/Layout';
+import { SnackbarProvider } from 'notistack';
 
 const theme = createTheme({
   palette: {
@@ -15,9 +16,11 @@ const theme = createTheme({
 function App() {
   return (
     <RouteGuide>
-      <ThemeProvider theme={theme}>
-        <Layout />
-      </ThemeProvider>
+      <SnackbarProvider maxSnack={3}>
+        <ThemeProvider theme={theme}>
+          <Layout />
+        </ThemeProvider>
+      </SnackbarProvider>
       <CssBaseline />
     </RouteGuide>
   );
