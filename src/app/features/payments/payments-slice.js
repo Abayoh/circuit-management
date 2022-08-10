@@ -53,7 +53,6 @@ export const selectPaymentsByCustomerId = createSelector(
 export const selectCurrentPaymentsByCustomerId = createSelector(
   [selectAllPayments, (state, customerId) => customerId],
   (payments, customerId) => {
-    debugger;
     return payments.filter(
       (payment) => payment.customerId === customerId && payment.current
     );

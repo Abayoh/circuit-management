@@ -24,7 +24,6 @@ const Circuits = () => {
       circuitsStatus === 'idle' &&
       paymentsStatus === 'idle'
     ) {
-      debugger;
       dispatch(fetchCustomers());
       dispatch(fetchCircuits());
       dispatch(fetchPayments());

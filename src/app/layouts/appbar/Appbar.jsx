@@ -43,7 +43,7 @@ const Appbar = ({ handleDrawerOpen, open }) => {
           <MenuIcon />
         </IconButton>
         <Typography variant='h6' noWrap component='div'>
-          Mini variant drawer
+          Payment Tracker
         </Typography>
       </Toolbar>
     </RootAppbar>

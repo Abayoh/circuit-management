@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { getCustomerById } from '../services/customers-slice';
 import { selectCircuitByCustomerId } from '../../circuits/services/circuit-slice';
 import { selectCurrentPaymentsByCustomerId } from '../../payments/payments-slice';
-
+import { useNavigate } from 'react-router-dom';
 import PageHeader from '../../../components/PageTitle';
 import CurrentPaymentList from './CurrentPaymentList';
 import lastDayOfMonth from 'date-fns/lastDayOfMonth';
@@ -19,16 +19,23 @@ import addMonths from 'date-fns/addMonths';
 import NewPaymentList from './NewPaymentList';
 import { Typography } from '@mui/material';
 import AddPaymentAmountDialog from './AddPaymentAmountDialog';
+import usePrompt from '../../../hooks/use-block-transition';
+import ConfirmationDialogRaw from '../../../components/Confirm';
 
 function ccyFormat(num) {
   return `$${num}.00`;
 }
 
 const CustomerDetails = () => {
-  const [circuitsWithPaymentInfo, setCircuitsWithPaymentInfo] = useState([]);
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [confirmIsOpen, setConfirmIsOpen] = useState(false);
+
   const [cheque, setCheque] = useState(null);
   const [newPayments, setNewPayments] = useState([]);
+  const [
+    currentPaymentsForAddingNewPayment,
+    setcurrentPaymentsForAddingNewPayment,
+  ] = useState([]);
   const [balanceAmountOnCheque, setBalanceAmountOnCheque] = useState(0);
   const { id } = useParams();
 
@@ -39,6 +46,26 @@ const CustomerDetails = () => {
   const customerCurrentPayments = useSelector((state) =>
     selectCurrentPaymentsByCustomerId(state, id)
   );
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    
+    const currentPaymentsForAdding = customerCircuits.reduce((p, circuit) => {
+      //find current payment for each circuit
+      let payment = customerCurrentPayments.find(
+        (cp) => cp.circuit.name === circuit.name
+      );
+      if (payment) {
+        return [...p, payment]; //if there is a payment return it
+      } else {
+        //else create Temp Payment
+        payment = getTempCurrentPayment(circuit, 'TEMP', customer);
+        return [...p, payment];
+      }
+    }, []);
+    setcurrentPaymentsForAddingNewPayment(currentPaymentsForAdding);
+  }, [customerCurrentPayments, customerCircuits]);
 
   const handleAddPaymentDialogClose = (newCheque) => {
     if (newCheque) {
@@ -52,8 +79,21 @@ const CustomerDetails = () => {
 
   const handleItemsDeselected = (circuitNames) => {
     //remove the deselected payment from the new payment list
+    const paymentsRemoved = findPaymentsToBeRemoved(circuitNames, newPayments);
+
+    let filteredPayments = circuitNames.reduce((prev, circuitName) => {
+      return prev.filter((p) => p.circuit.name !== circuitName);
+    }, newPayments);
+
+    setNewPayments([...filteredPayments]);
+
     //then increament the balanceAmountOnCheque by the the total amount
     //on the deseleted payments
+    const sumOfPaymentsAmount = paymentsRemoved.reduce(
+      (sum, payment) => sum + payment.amount,
+      0
+    );
+    setBalanceAmountOnCheque((prev) => prev + sumOfPaymentsAmount);
   };
 
   const handleItemsSelected = (circuitNames) => {
@@ -67,7 +107,7 @@ const CustomerDetails = () => {
 
   const createNewPayments = (circuitNames) => {
     //get Display Amount
-    debugger;
+
     let newCurrentBalanceOnDisplay = balanceAmountOnCheque;
     const payments = [];
     const numberOfMonths = 3;
@@ -85,8 +125,11 @@ const CustomerDetails = () => {
         currentPayment,
         numberOfMonths
       );
+      let balance = 0;
       if (amount >= newCurrentBalanceOnDisplay) {
+        balance = amount - newCurrentBalanceOnDisplay;
         amount = newCurrentBalanceOnDisplay;
+
         newCurrentBalanceOnDisplay = 0;
       } else {
         newCurrentBalanceOnDisplay -= amount;
@@ -98,7 +141,8 @@ const CustomerDetails = () => {
           'Josephous Brown',
           customer,
           numberOfMonths,
-          amount
+          amount,
+          balance
         )
       );
     });
@@ -112,7 +156,8 @@ const CustomerDetails = () => {
     userName,
     customer,
     numberOfMonths,
-    amount
+    amount,
+    balance
   ) => {
     if (!circuit) throw new Error('circuit Cannot be null');
     if (!userName) throw new Error('userName Cannot be null');
@@ -129,13 +174,13 @@ const CustomerDetails = () => {
       },
       customerName: customer.name,
       customerId: id,
-      chequeId: cheque.id,
+      chequeId: cheque?.id || '',
       current: false,
       billed: {
         from: getNewPaymentStartDate(currentPaymentEndDate),
         to: getNewPaymentEndDate(currentPaymentEndDate, numberOfMonths),
       },
-      balance: 0,
+      balance: balance,
       previousBalance: {
         paymentId: currentPayment?.id || '',
         amount: currentPayment?.balance || 0,
@@ -144,6 +189,31 @@ const CustomerDetails = () => {
     };
   };
 
+  const newPaymentEdited = (payment) => {
+    let paymentSum = 0;
+    const editedPayments = newPayments.map((p) => {
+      if (payment.circuit.name === p.circuit.name) {
+        paymentSum += payment.amount;
+        return payment;
+      }
+      paymentSum += p.amount;
+      return p;
+    });
+    setBalanceAmountOnCheque(cheque.amount - paymentSum);
+    setNewPayments(editedPayments);
+  };
+
+  const prompt = () => {
+    setConfirmIsOpen(true);
+  };
+
+  const { location, setCanNavigate } = usePrompt(prompt, cheque !== null);
+
+  const handleConfirmClose = (isConfirmed) => {
+    setConfirmIsOpen(false);
+    setCanNavigate(isConfirmed);
+    navigate(location.pathname);
+  };
   return (
     <Box>
       {customer && (
@@ -161,6 +231,14 @@ const CustomerDetails = () => {
             >
               Make Payment
             </Button>
+            <ConfirmationDialogRaw
+              id='ringtone-menu'
+              keepMounted
+              open={confirmIsOpen}
+              onClose={handleConfirmClose}
+              message='You have unsave changes! You will loose your changes if you leave!'
+              title='Are you sure you want to leave?'
+            />
             <AddPaymentAmountDialog
               open={dialogIsOpen}
               onClose={handleAddPaymentDialogClose}
@@ -169,37 +247,70 @@ const CustomerDetails = () => {
           <Grid container spacing={2}>
             <Grid item md={12}>
               <CurrentPaymentList
-                currentPayments={customerCurrentPayments}
+                currentPayments={currentPaymentsForAddingNewPayment}
                 disableAddingToPaymentList={!Boolean(cheque)}
                 onItemsDeselected={handleItemsDeselected}
                 onItemsSelected={handleItemsSelected}
               />
-              <Button
-                onClick={() => alert(addMonths(new Date('7/31/2022'), 3))}
-              >
-                calculate
-              </Button>
             </Grid>
             {cheque && (
               <>
-                <Grid item md={8}>
-                  <NewPaymentList newPayments={newPayments} />
+                <Grid item md={9}>
+                  <Typography variant='h5' sx={{ mb: 1 }}>
+                    New Payments
+                  </Typography>
+                  <NewPaymentList
+                    newPayments={newPayments}
+                    onChange={newPaymentEdited}
+                  />
                 </Grid>
-                <Grid item md={4}>
-                  <Card>
-                    <CardHeader title='Amount' />
-                    <CardContent
-                      sx={{
-                        display: 'grid',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
+                <Grid item md={3}>
+                  <Stack spacing={2}>
+                    <Card>
+                      <CardHeader title='Balance Amount' />
+                      <CardContent
+                        sx={{
+                          display: 'grid',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <Typography variant='h3'>
+                          {ccyFormat(balanceAmountOnCheque)}
+                        </Typography>
+                        <Box
+                          sx={{
+                            position: 'relative',
+                            mt: 3,
+                            pl: 3,
+                            '&:before': {
+                              content: '""',
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              bottom: 0,
+                              width: '10px',
+                              backgroundColor: `${
+                                balanceAmountOnCheque === 0
+                                  ? 'success.main'
+                                  : 'error.main'
+                              }`,
+                            },
+                          }}
+                        >
+                          {balanceAmountOnCheque === 0
+                            ? 'Balanced'
+                            : 'Not Balanced'}
+                        </Box>
+                      </CardContent>
+                    </Card>
+                    <Button
+                      disabled={balanceAmountOnCheque !== 0}
+                      variant='contained'
                     >
-                      <Typography variant='h3'>
-                        {ccyFormat(balanceAmountOnCheque)}
-                      </Typography>
-                    </CardContent>
-                  </Card>
+                      Save Payments
+                    </Button>
+                  </Stack>
                 </Grid>
               </>
             )}
@@ -216,7 +327,7 @@ const getNewPaymentStartDate = (currentPaymentEndDate) => {
 
 const getNewPaymentEndDate = (currentPaymentEndDate, numberOfMonths) => {
   const newPaymentStartDate = getNewPaymentStartDate(currentPaymentEndDate);
-  return addMonths(newPaymentStartDate, numberOfMonths);
+  return Date.parse(addMonths(newPaymentStartDate, numberOfMonths));
 };
 
 const getNewDate = () => {
@@ -236,16 +347,55 @@ const getNewDate = () => {
 
 const getLastDayOfPreviousMonth = () => {
   return Date.parse(
-    lastDayOfMonth(`${new Date().getMonth()}/10/${new Date.getFullYear()}`)
+    lastDayOfMonth(
+      Date.parse(`${new Date().getMonth()}/10/${new Date().getFullYear()}`)
+    )
   );
 };
 
 const getLastDayOfCurrentMonth = () => {
-  return Date.parse(lastDayOfMonth(Date.now));
+  return Date.parse(lastDayOfMonth(Date.now()));
+};
+
+const findPaymentsToBeRemoved = (circuitNames, newPayments) => {
+  return circuitNames.reduce(
+    (payments, circuitName) => [
+      ...payments,
+      newPayments.find((p) => p.circuit.name === circuitName),
+    ],
+    []
+  );
 };
 
 const calculatePaymentAmount = (circuit, currentPayment, numberOfMonths) => {
-  return circuit.cost * numberOfMonths + currentPayment?.balance || 0;
+  const amount = circuit.cost * numberOfMonths + (currentPayment?.balance || 0);
+
+  return amount;
+};
+
+const getTempCurrentPayment = (circuit, userName, customer) => {
+  return {
+    amount: 'NEW',
+    receiveBy: userName,
+    circuit: {
+      name: circuit.name,
+      cost: circuit.cost,
+    },
+    customerName: customer.name,
+    customerId: customer.id,
+    chequeId: '',
+    current: true,
+    billed: {
+      from: Date.now(),
+      to: Date.now(),
+    },
+    balance: 0,
+    previousBalance: {
+      paymentId: '',
+      amount: 0,
+    },
+    dateDeposited: Date.now(),
+  };
 };
 
 export default CustomerDetails;

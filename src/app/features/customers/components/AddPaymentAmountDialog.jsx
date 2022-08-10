@@ -40,6 +40,7 @@ export default function AddPaymentAmountDialog({ open, onClose }) {
 
   const resetState = () => {
     setSelectedFile(null);
+    setAmount(0);
     setFileName('');
   };
 
@@ -60,7 +61,7 @@ export default function AddPaymentAmountDialog({ open, onClose }) {
   const handleChange = (e) => {
     const name = e.target.name;
     if (name === 'amount') {
-      setAmount(e.target.value);
+      setAmount(Number(e.target.value));
     } else {
       setSelectedFile(e.target.files[0]);
     }

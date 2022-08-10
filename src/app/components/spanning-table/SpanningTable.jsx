@@ -18,7 +18,7 @@ export default function SpanningTable({
   enableActionCell = false,
   actionButtons,
 }) {
-  const [total, setTotal] = useState(0);
+  const [total] = useState(0);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label='spanning table'>
@@ -26,6 +26,7 @@ export default function SpanningTable({
           headCells={headCells}
           enableActionCell={enableActionCell}
         />
+
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.desc}>

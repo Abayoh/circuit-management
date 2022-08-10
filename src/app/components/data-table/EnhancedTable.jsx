@@ -42,41 +42,26 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-function EnhancedTable(
-  {
-    rows,
-    headCells,
-    tableLabel,
-    selectDisabled = false,
-    toolbarContent,
-    idFieldName,
-    onItemsSelected = (items) => {},
-    onItemsDeselected = (items) => {},
-  },
-  ref
-) {
+function EnhancedTable({
+  rows,
+  headCells,
+  tableLabel,
+  selectDisabled = false,
+  toolbarContent,
+  idFieldName,
+  onItemsSelected = (items) => {},
+  onItemsDeselected = (items) => {},
+}) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
-
-  React.useImperativeHandle(
-    ref,
-    () => {
-      return { deselect };
-    },
-    []
-  );
-
-  const deselect = () => {
-    setSelected([]);
   };
 
   const handleSelectAllClick = (event) => {
@@ -100,7 +85,6 @@ function EnhancedTable(
   };
 
   const handleItemClick = (event, id) => {
-   
     if (selectDisabled) return;
 
     const selectedIndex = selected.indexOf(id);
@@ -262,4 +246,4 @@ EnhancedTable.propTypes = {
   onItemsDeselected: PropTypes.func,
 };
 
-export default React.forwardRef(EnhancedTable);
+export default EnhancedTable;

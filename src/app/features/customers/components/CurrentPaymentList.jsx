@@ -49,7 +49,6 @@ export default function CurrentPaymentList({
 }) {
   const [tableFormat, setTableFormat] = useState([]);
   useEffect(() => {
-    debugger;
     const payments = currentPayments.map((p) => ({
       name: p.circuit.name,
       monthlyCost: p.circuit.cost,
