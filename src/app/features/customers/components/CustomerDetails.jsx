@@ -228,6 +228,7 @@ const CustomerDetails = () => {
               onClick={handleAddPaymentDialogOpen}
               variant='contained'
               sx={{ height: '48px' }}
+              disabled = {newPayments.length!==0}
             >
               Make Payment
             </Button>
