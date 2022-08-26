@@ -50,7 +50,6 @@ const CustomerDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    
     const currentPaymentsForAdding = customerCircuits.reduce((p, circuit) => {
       //find current payment for each circuit
       let payment = customerCurrentPayments.find(
@@ -174,7 +173,7 @@ const CustomerDetails = () => {
       },
       customerName: customer.name,
       customerId: id,
-      chequeId: cheque?.id || '',
+      chequeId: cheque?._id || '',
       current: false,
       billed: {
         from: getNewPaymentStartDate(currentPaymentEndDate),
@@ -228,7 +227,7 @@ const CustomerDetails = () => {
               onClick={handleAddPaymentDialogOpen}
               variant='contained'
               sx={{ height: '48px' }}
-              disabled = {newPayments.length!==0}
+              disabled={newPayments.length !== 0}
             >
               Make Payment
             </Button>
@@ -375,6 +374,7 @@ const calculatePaymentAmount = (circuit, currentPayment, numberOfMonths) => {
 };
 
 const getTempCurrentPayment = (circuit, userName, customer) => {
+  
   return {
     amount: 'NEW',
     receiveBy: userName,
@@ -383,7 +383,7 @@ const getTempCurrentPayment = (circuit, userName, customer) => {
       cost: circuit.cost,
     },
     customerName: customer.name,
-    customerId: customer.id,
+    customerId: customer._id,
     chequeId: '',
     current: true,
     billed: {

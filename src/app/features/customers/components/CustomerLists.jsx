@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box'
+import Box from '@mui/material/Box';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -26,11 +26,11 @@ const CustomersList = () => {
       columnSpacing={{ xs: 1, sm: 2, md: 3 }}
     >
       {customers.map((customer) => (
-        <Grid key={customer.id} item>
+        <Grid key={customer._id} item>
           <CustomerCard
             name={customer.name}
             circuitsCount={5}
-            onDetailsClick={() => navigateToDetails(customer.id)}
+            onDetailsClick={() => navigateToDetails(customer._id)}
           />
         </Grid>
       ))}
@@ -48,12 +48,16 @@ const CustomersList = () => {
     content = <Error />;
   }
 
-  return <>
-    <PageToolsbar pageTitle="Customers" linkName="Add Customer" linkPath="add-customer" />
-    <Box sx={{ mt: 3 }}>
-      {content}
-    </Box>
-  </>;
+  return (
+    <>
+      <PageToolsbar
+        pageTitle='Customers'
+        linkName='Add Customer'
+        linkPath='add-customer'
+      />
+      <Box sx={{ mt: 3 }}>{content}</Box>
+    </>
+  );
 };
 
 export default CustomersList;

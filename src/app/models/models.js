@@ -1639,6 +1639,5 @@ const logs = [
 ];
 
 const getPaymentCircuidId = (id) => {
-  console.log(payments.filter((c) => c.circuitId == id));
 };
 getPaymentCircuidId('cir17');

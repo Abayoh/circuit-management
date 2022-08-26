@@ -1,32 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation, matchRoutes } from 'react-router-dom';
 import routes from '../features/root-routes';
+import { getUser } from '../features/sessions/session-slice';
+import { useSelector } from 'react-redux';
 
-const user = {
-  name: 'alex',
-  role: ['admin'],
-};
-
-const checkAuth = (routes, location, navigate) => {
+const checkAuth = (routes, location, navigate, user) => {
+  
   //retrieving routes user wants to visit
   const matchedRoutes = matchRoutes(routes, location);
-
+   
   if (location.pathname === '/404') {
     return true;
   }
-
+  //stop user from visiting the login page when l
+  if (location.pathname === '/login' && user) {
+    return navigate(-1);
+  }
+  
+  //go to 404 page is the page is not available
   if (!Boolean(matchedRoutes)) {
     navigate('/404', { replace: true });
     return true;
   }
 
   const action = matchedRoutes[0].route.action;
-  //if the route is public
+  //allow all public routes
   if (action === '*') {
     return true;
-    //if the user cannot visit route
-  } else if (!(action === user.role.find((role) => action === role))) {
-    navigate('/login');
+    //go to the login page when user is not sign in
+  } else if (!user) {
+    navigate('/login', {state:{from:location}, replace:true});
+    return false;
+    //go the the unauthorize page if user is not authorize to visit the requested page
+  } else if (!(action === user.roles.find((role) => action === role))) {
+    navigate('/unauthorize', {replace:true});
     return false;
   }
 
@@ -36,12 +43,12 @@ const checkAuth = (routes, location, navigate) => {
 
 function RouteGuide({ children }) {
   const [isAuthorized, setIsAuthorized] = useState(false);
-
+  const user = useSelector(getUser);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    let canNavigate = checkAuth(routes, location, navigate);
+    let canNavigate = checkAuth(routes, location, navigate, user);
     setIsAuthorized(canNavigate);
     /* eslint-disable */
   }, [location]);

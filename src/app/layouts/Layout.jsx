@@ -13,6 +13,7 @@ import routes from '../features/root-routes';
 import RenderRoutes from '../features/RenderRoutes';
 import VerticalNavigation from './navigations/VerticalNavigation';
 import navLinks from './navigations/navigation';
+import {Outlet} from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -95,7 +96,7 @@ export default function Layout() {
       <Box component='main' sx={{ flexGrow: 1, p: 3, bgcolor: '#F4F5FA' }}>
         <DrawerHeader />
         <SuspenseWrapper>
-          <RenderRoutes routes={routes} />
+          <Outlet />
         </SuspenseWrapper>
       </Box>
     </Box>

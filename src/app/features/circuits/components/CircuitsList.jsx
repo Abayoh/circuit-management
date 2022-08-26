@@ -40,7 +40,7 @@ function CircuitsList() {
     const circutsAndCustomers = circuits.map((circuits) => {
         let data = {};
         customers.forEach((customer) => {
-            if (circuits.customerId === customer.id) {
+            if (circuits.customerId === customer._id) {
                 data = {
                     name: circuits.name,
                     customerName: customer.name,
@@ -57,6 +57,7 @@ function CircuitsList() {
         <>
             <PageToolsbar pageTitle="Circuits" linkName="Add Circuits" linkPath="add-circuits" />
             <EnhancedTable
+                idFieldName='name'
                 headCells={headCells}
                 tableLabel='Circuits Info'
                 rows={circutsAndCustomers} />

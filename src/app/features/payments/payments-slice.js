@@ -3,9 +3,9 @@ import {
   createAsyncThunk,
   createSelector,
 } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axiosInstance from '../../services/axios-instance';
 
-const URL = 'http://localhost:3500/payments';
+const URL = '/payments';
 
 const initialState = {
   payments: [],
@@ -16,7 +16,14 @@ const initialState = {
 export const fetchPayments = createAsyncThunk(
   'payments/fetchPayments',
   async () => {
-    const response = await axios.get(URL);
+    const response =await axiosInstance.get(URL)
+    return response.data;
+  }
+);
+export const addPayments = createAsyncThunk(
+  'payments/savePayments',
+  async (data) => {
+    const response = await axiosInstance.post(URL, data);
     return response.data;
   }
 );

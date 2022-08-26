@@ -22,7 +22,7 @@ const loading = {
   },
 };
 
-const Loading = (props) => {
+const Loading = () => {
   return (
     <Box sx={loading}>
       <img src='/assets/images/logo-circle.svg' alt='' />

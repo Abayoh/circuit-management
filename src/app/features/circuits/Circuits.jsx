@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from '@mui/material/Button'
 import {
   getCircuitsError,
   getCircuitsStatus,
@@ -33,6 +34,7 @@ const Circuits = () => {
   return (
     <>
       <Outlet />
+      <Button onClick = {()=>dispatch(fetchCircuits())}>GetCircuits</Button>
     </>
   );
 };
