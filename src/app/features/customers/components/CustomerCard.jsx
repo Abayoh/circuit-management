@@ -6,7 +6,12 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function CustomerCard({ name, circuitsCount, onDetailsClick }) {
+export default function CustomerCard({
+  name,
+  circuitsCount,
+  onMakePaymentsClick,
+  onEditPaymentClick,
+}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -24,10 +29,12 @@ export default function CustomerCard({ name, circuitsCount, onDetailsClick }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small' onClick={onDetailsClick}>
-          Details
+        <Button size='small' onClick={onMakePaymentsClick}>
+          Make Payments
         </Button>
-        <Button size='small'>Edit</Button>
+        <Button size='small' onClick={onEditPaymentClick}>
+          Edit
+        </Button>
       </CardActions>
     </Card>
   );

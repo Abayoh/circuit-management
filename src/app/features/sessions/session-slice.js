@@ -1,31 +1,27 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createSelector,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../services/axios-instance';
-import tokenService from '../../services/token-service';
 import jwtDecode from 'jwt-decode';
+import { requestStates } from '../../models/request-state';
 
 const LOGINURL = '/auth';
 const LOGOUTURL = '/auth/logout';
 const REFRESH_URL = '/auth/refresh-token';
 
-
 const initialState = {
   user: null,
   accessToken: '',
-  status: 'idle', // idle | loading | succeeded | failed
+  status: 'idle', // idle | loading | succeeded | failed | refreshing
   error: null,
 };
 
-const decodeToken =(token)=>{
-  const {aud, name, roles} = jwtDecode(token);
-  return {userId:aud, name, roles}
-}
+const decodeToken = (token) => {
+  const { aud, name, roles } = jwtDecode(token);
+  return { userId: aud, name, roles };
+};
 
 export const login = createAsyncThunk('login/requestLogin', async (data) => {
   const response = await axios.post(LOGINURL, data);
+
   return response.data;
 });
 
@@ -37,7 +33,6 @@ export const logout = createAsyncThunk('logout/requestLogout', async (data) => {
 export const refreshAccessToken = createAsyncThunk(
   'logout/refreshAccessToken',
   async () => {
-    console.log('ey');
     const response = await axios.get(REFRESH_URL);
     return response.data;
   }
@@ -63,49 +58,44 @@ const sessionSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(login.pending, (state) => {
-        state.status = 'loading';
+        state.status = requestStates.loading;
       })
       .addCase(login.fulfilled, (state, action) => {
-        const { accessToken } = action.payload;
-        state.status = 'succeeded';
+        const accessToken = action.payload;
+        state.status = requestStates.succeeded;
         state.user = decodeToken(accessToken);
         state.accessToken = accessToken;
       })
       .addCase(login.rejected, (state, action) => {
-        state.status = 'failed';
+       
+        state.status = requestStates.failed;
         state.error = action.error;
       })
       .addCase(logout.pending, (state) => {
-        state.status = 'loading';
+        state.status = requestStates.loading;
       })
-      .addCase(logout.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+      .addCase(logout.fulfilled, (state) => {
+        state.status = requestStates.succeeded;
         state.user = null;
-        state.accessToken =''
+        state.accessToken = '';
       })
       .addCase(logout.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = requestStates.failed;
         state.error = action.error;
       })
-      .addCase(refreshAccessToken.pending, (state) => {
-        state.status = 'loading';
-      })
       .addCase(refreshAccessToken.fulfilled, (state, action) => {
-        state.status = 'succeeded';
         state.user = decodeToken(action.payload);
         state.accessToken = action.payload;
       })
       .addCase(refreshAccessToken.rejected, (state, action) => {
-        state.status = 'failed';
         state.error = action.error;
       });
   },
 });
 
-
-
 export const getUser = (state) => state.session.user;
 export const getLoginState = (state) => state.session.status;
+export const getErrorState = (state) => state.session.error;
 
 export const { setStatus, resetError, setUser, setAccessToken } =
   sessionSlice.actions;

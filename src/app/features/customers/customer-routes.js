@@ -1,9 +1,9 @@
 import React from 'react';
-import CustomersList from './components/CustomerLists';
-import CustomerDetails from './components/CustomerDetails';
-import AddCustomer from './components/AddCustomer';
+import CustomersList from './CustomerLists';
+import AddCustomerPayments from './AddCustomerPayments';
+import AddEditCustomer from './AddEditCustomer';
 
-const Customers = React.lazy(() => import('./Customers'));
+const Customers = React.lazy(() => import('.'));
 
 const customersRoutes = [
   {
@@ -18,13 +18,18 @@ const customersRoutes = [
         name: 'Customers',
       },
       {
-        path: 'add-customer',
-        element: <AddCustomer />,
+        path: 'add',
+        element: <AddEditCustomer />,
         name: 'Add Customer',
       },
       {
+        path: 'edit/:id',
+        element: <AddEditCustomer />,
+        name: 'Edit Customer',
+      },
+      {
         path: ':id',
-        element: <CustomerDetails />,
+        element: <AddCustomerPayments />,
         name: 'Hey',
       },
     ],

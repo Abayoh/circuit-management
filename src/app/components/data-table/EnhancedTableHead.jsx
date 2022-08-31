@@ -18,6 +18,7 @@ function EnhancedTableHead(props) {
     onRequestSort,
     headCells,
     selectDisabled,
+    enableActionCell,
   } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -60,6 +61,7 @@ function EnhancedTableHead(props) {
             </TableSortLabel>
           </TableCell>
         ))}
+        {enableActionCell && <TableCell/>}
       </TableRow>
     </TableHead>
   );

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { logout, setStatus } from '../../features/sessions/session-slice';
+import React from 'react';
+import { logout, setStatus, resetError, getErrorState } from '../../features/sessions/session-slice';
 import tokenService from '../../services/token-service';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { requestStates } from '../../models/request-state';
+import { useSnackbar } from 'notistack';
 
 import MuiAppBar from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
@@ -17,7 +17,9 @@ import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
 import Spacer from '../../components/Spacer';
-import Button from '@mui/material/Button';
+import useRequestStatus from '../../hooks/use-request-status';
+import Loading from '../../components/Loading';
+
 
 const drawerWidth = 240;
 
@@ -44,19 +46,24 @@ const Appbar = ({ handleDrawerOpen, open }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const requestStatus = useSelector((state) => state.session.status);
-  const [loading, setLoading] = useState(false);
+  const {enqueueSnackbar} = useSnackbar();
+  const error = useSelector(getErrorState);
+  
+  const onLogoutSuccess =()=>navigate('/login', {replace:true});
+  const onLogoutError =()=>{
+    enqueueSnackbar(error.message, {
+      variant: 'error',
+      anchorOrigin: {
+        vertical: 'bottom',
+        horizontal: 'left',
+      },
+    });
+    resetError();
+  }
 
-  useEffect(() => {
-    if (requestStatus === requestStates.failed) {
-      setLoading(false);
-    } else if (requestStatus === requestStates.loading) {
-      setLoading(true);
-    } else if (requestStatus === requestStates.succeeded) {
-      dispatch(setStatus(requestStates.idle));
-      setLoading(false);
-      navigate('/login');
-    }
-  }, [requestStatus, navigate, dispatch]);
+  const isLoading = useRequestStatus(requestStatus, setStatus, onLogoutSuccess, onLogoutError)
+
+  
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -121,6 +128,7 @@ const Appbar = ({ handleDrawerOpen, open }) => {
           </Menu>
         </Box>
       </Toolbar>
+      {isLoading && <Loading />}
     </RootAppbar>
   );
 };

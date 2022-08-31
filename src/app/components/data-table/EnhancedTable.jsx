@@ -49,6 +49,8 @@ function EnhancedTable({
   selectDisabled = false,
   toolbarContent,
   idFieldName,
+  enableActionCell=false,
+  actionButtons = ()=>{},
   onItemsSelected = (items) => {},
   onItemsDeselected = (items) => {},
 }) {
@@ -158,6 +160,7 @@ function EnhancedTable({
               rowCount={rows.length}
               headCells={headCells}
               selectDisabled={selectDisabled}
+              enableActionCell={enableActionCell}
             />
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
@@ -199,6 +202,10 @@ function EnhancedTable({
                           {row[cell.id]}
                         </TableCell>
                       ))}
+                      {enableActionCell && (<TableCell>
+                           {actionButtons(row)}
+                        </TableCell>)
+                        }
                     </TableRow>
                   );
                 })}
@@ -244,6 +251,7 @@ EnhancedTable.propTypes = {
   toolbarContent: PropTypes.func,
   onItemsSelected: PropTypes.func,
   onItemsDeselected: PropTypes.func,
+  enableActionCell: PropTypes.bool,
 };
 
 export default EnhancedTable;

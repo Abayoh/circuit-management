@@ -3,7 +3,7 @@ import {
   createAsyncThunk,
   createSelector,
 } from '@reduxjs/toolkit';
-import axiosInstance from '../../services/axios-instance';
+import { axiosPrivate } from '../../services/axios-instance';
 
 const URL = '/payments';
 
@@ -16,14 +16,14 @@ const initialState = {
 export const fetchPayments = createAsyncThunk(
   'payments/fetchPayments',
   async () => {
-    const response =await axiosInstance.get(URL)
+    const response = await axiosPrivate.get(URL);
     return response.data;
   }
 );
 export const addPayments = createAsyncThunk(
   'payments/savePayments',
   async (data) => {
-    const response = await axiosInstance.post(URL, data);
+    const response = await axiosPrivate.post(URL, data);
     return response.data;
   }
 );

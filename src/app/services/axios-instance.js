@@ -1,16 +1,7 @@
 import axios from 'axios';
-import TokenService from './token-service';
-import jwt_decode from 'jwt-decode';
 
 const baseURL = 'http://localhost:8080/api/v0';
 
-let accessToken = TokenService.getLocalAccessToken();
-
-let requests = [];
-
-const axiosInstance = axios.create({
-  baseURL,
-});
 // let _isRefreshing = false;
 // axiosInstance.interceptors.request.use(
 
@@ -65,6 +56,19 @@ const axiosPublic = axios.create({
   withCredentials: true,
 });
 
+axiosPublic.interceptors.response.use(
+  (res) => res,
+  (err) => {
+    const apiErr = err?.response?.data
+      ? {
+          name: 'API Error',
+          code: `${err?.response?.data?.error?.status}`,
+          message: err?.response?.data?.error?.message,
+        }
+      : err;
+    return Promise.reject(apiErr);
+  }
+);
 
 export const axiosPrivate = axios.create({
   baseURL,
@@ -79,7 +83,6 @@ export const configRequest = (token, saveAccessToken) => {
       return req;
     },
     (err) => {
-      debugger;
       return Promise.reject(err);
     }
   );
@@ -89,7 +92,6 @@ export const configRequest = (token, saveAccessToken) => {
     },
     async (err) => {
       try {
-        debugger;
         const preRequest = err?.config;
         if (
           err.response?.data?.error?.message === 'jwt expired' &&
@@ -102,11 +104,25 @@ export const configRequest = (token, saveAccessToken) => {
           return axiosPrivate(preRequest); //resend the original request
         } else {
           //if the error is not related to a jwt expire
-          return Promise.reject(err);
+          const apiErr = err?.response?.data
+            ? {
+                name: 'API Error',
+                code: `${err?.response?.data?.error?.status}`,
+                message: err?.response?.data?.error?.message,
+              }
+            : err;
+          return Promise.reject(apiErr);
         }
       } catch (err) {
         //if error occurs on the new access token request
-        return Promise.reject(err);
+        const apiErr = err?.response?.data
+          ? {
+              name: 'API Error',
+              code: `${err.response.data.error.status}`,
+              message: err.response.data.error.message,
+            }
+          : err;
+        return Promise.reject(apiErr);
       }
     }
   );

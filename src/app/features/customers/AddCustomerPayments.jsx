@@ -8,25 +8,25 @@ import CardHeader from '@mui/material/CardHeader';
 import Stack from '@mui/material/Stack';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getCustomerById } from '../services/customers-slice';
-import { selectCircuitByCustomerId } from '../../circuits/services/circuit-slice';
-import { selectCurrentPaymentsByCustomerId } from '../../payments/payments-slice';
+import { getCustomerById } from './services/customers-slice';
+import { selectCircuitByCustomerId } from '../circuits/services/circuit-slice';
+import { selectCurrentPaymentsByCustomerId } from '../payments/payments-slice';
 import { useNavigate } from 'react-router-dom';
-import PageHeader from '../../../components/PageTitle';
-import CurrentPaymentList from './CurrentPaymentList';
+import PageHeader from '../../components/PageTitle';
+import CurrentPaymentList from './components/CurrentPaymentList';
 import lastDayOfMonth from 'date-fns/lastDayOfMonth';
 import addMonths from 'date-fns/addMonths';
-import NewPaymentList from './NewPaymentList';
+import NewPaymentList from './components/NewPaymentList';
 import { Typography } from '@mui/material';
-import AddPaymentAmountDialog from './AddPaymentAmountDialog';
-import usePrompt from '../../../hooks/use-block-transition';
-import ConfirmationDialogRaw from '../../../components/Confirm';
+import AddPaymentAmountDialog from './components/AddPaymentAmountDialog';
+import usePrompt from '../../hooks/use-block-transition';
+import ConfirmationDialogRaw from '../../components/Confirm';
 
 function ccyFormat(num) {
   return `$${num}.00`;
 }
 
-const CustomerDetails = () => {
+const AddCustomerPayments = () => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [confirmIsOpen, setConfirmIsOpen] = useState(false);
 
@@ -399,4 +399,4 @@ const getTempCurrentPayment = (circuit, userName, customer) => {
   };
 };
 
-export default CustomerDetails;
+export default AddCustomerPayments;

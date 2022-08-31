@@ -1,42 +1,45 @@
-import React, { useEffect } from 'react';
+import React, { useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from '@mui/material/Button'
+import { useSnackbar } from 'notistack';
+
 import {
   getCircuitsError,
   getCircuitsStatus,
   fetchCircuits,
+  setStatus,
 } from './services/circuit-slice';
-import {
-  fetchCustomers,
-  getCustomersStatus,
-} from '../customers/services/customers-slice';
-import { fetchPayments, getPaymentsStatus } from '../payments/payments-slice';
 import { Outlet } from 'react-router-dom';
+import useRequestStatus from '../../hooks/use-request-status';
 
 const Circuits = () => {
   const dispatch = useDispatch();
-  const customersStatus = useSelector(getCustomersStatus);
   const circuitsStatus = useSelector(getCircuitsStatus);
-  const paymentsStatus = useSelector(getPaymentsStatus);
+  const { enqueueSnackbar } = useSnackbar();
+  const handleRequestError = () => {
+    enqueueSnackbar(error?.message, {
+      anchorOrigin: {
+        vertical: 'bottom',
+        horizontal: 'right',
+      },
+      variant: 'error',
+    });
+  };
+   useRequestStatus(
+    circuitsStatus,
+    setStatus,
+    () => {},
+    handleRequestError
+  );
+  const error = useSelector(getCircuitsError);
 
   useEffect(() => {
-    if (
-      customersStatus === 'idle' &&
-      circuitsStatus === 'idle' &&
-      paymentsStatus === 'idle'
-    ) {
-      dispatch(fetchCustomers());
-      dispatch(fetchCircuits());
-      dispatch(fetchPayments());
-    }
-  }, [customersStatus, dispatch, circuitsStatus, paymentsStatus]);
+    
+    dispatch(fetchCircuits());
 
-  return (
-    <>
-      <Outlet />
-      <Button onClick = {()=>dispatch(fetchCircuits())}>GetCircuits</Button>
-    </>
-  );
+    /* eslint-disable */
+  }, []);
+
+  return <>{ <Outlet />}</>;
 };
 
 export default Circuits;

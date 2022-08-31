@@ -1,13 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {setAccessToken} from '../../sessions/session-slice' 
-import {axiosPrivate, configRequest} from '../../../services/axios-instance';
+import { setAccessToken } from '../../sessions/session-slice';
+import { axiosPrivate, configRequest } from '../../../services/axios-instance';
+import { requestStates } from '../../../models/request-state';
 
 const URL = '/customers';
 
 const initialState = {
   customers: [],
   status: 'idle', // idle | loading | succeeded | failed
-  message: '',
   error: null,
 };
 
@@ -24,7 +24,7 @@ export const fetchCustomers = createAsyncThunk(
       }
     );
     const response = await axiosPrivate.get(URL);
-     
+
     axiosPrivate.interceptors.request.eject(reqInterceptor);
     axiosPrivate.interceptors.response.eject(resInterceptor);
 
@@ -32,10 +32,9 @@ export const fetchCustomers = createAsyncThunk(
   }
 );
 
-export const addCustomers = createAsyncThunk(
+export const addCustomer = createAsyncThunk(
   'customers/addCustomer',
   async (customers, thunkApi) => {
-    
     const { getState, dispatch } = thunkApi;
     const token = getState().session.accessToken;
 
@@ -47,10 +46,35 @@ export const addCustomers = createAsyncThunk(
     );
 
     const response = await axiosPrivate.post(URL, customers);
-     
+
     axiosPrivate.interceptors.request.eject(reqInterceptor);
     axiosPrivate.interceptors.response.eject(resInterceptor);
-    
+
+    return response.data;
+  }
+);
+export const editCustomer = createAsyncThunk(
+  'customers/editCustomer',
+  async ({id, customer}, thunkApi) => {
+    const { getState, dispatch } = thunkApi;
+
+    //get token for the request
+    const token = getState().session.accessToken;
+
+    //add Access on the request
+    const { reqInterceptor, resInterceptor } = configRequest(
+      token,
+      (newToken) => {
+        dispatch(setAccessToken(newToken));
+      }
+    );
+
+    const response = await axiosPrivate.put(`${URL}/${id}`, customer);
+
+    //remove the interceptors handlers
+    axiosPrivate.interceptors.request.eject(reqInterceptor);
+    axiosPrivate.interceptors.response.eject(resInterceptor);
+
     return response.data;
   }
 );
@@ -58,32 +82,50 @@ export const addCustomers = createAsyncThunk(
 const customersSlice = createSlice({
   name: 'customers',
   initialState,
-  reducers: {},
+  reducers: {
+    setStatus(state, { payload }) {
+      state.status = payload;
+    },
+    resetError(state) {
+      state.error = null;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchCustomers.pending, (state) => {
-        state.status = 'loading';
+        state.status = requestStates.loading;
       })
       .addCase(fetchCustomers.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = requestStates.succeeded;
         state.customers = action.payload;
       })
       .addCase(fetchCustomers.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message;
+        state.status = requestStates.failed;
+        state.error = action.error;
       })
-      .addCase(addCustomers.pending, (state) => {
-        state.status = 'loading';
+      .addCase(addCustomer.pending, (state) => {
+        state.status = requestStates.loading;
       })
-      .addCase(addCustomers.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+      .addCase(addCustomer.fulfilled, (state, action) => {
+        state.status = requestStates.succeeded;
         state.customers.push(action.payload);
-        state.message = 'Customer added successfully';
       })
-      .addCase(addCustomers.rejected, (state, action) => {
-        state.status = 'faild';
-        state.message = action.error.message;
-        state.error = action.error.message;
+      .addCase(addCustomer.rejected, (state, action) => {
+        state.status = requestStates.failed;
+        state.error = action.error;
+      })
+      .addCase(editCustomer.pending, (state) => {
+        state.status = requestStates.loading;
+      })
+      .addCase(editCustomer.fulfilled, (state, action) => {
+       
+        state.status = requestStates.succeeded;
+        let index = state.customers.findIndex(c => c._id === action.payload._id);
+        state.customers[index] = action.payload;
+      })
+      .addCase(editCustomer.rejected, (state, action) => {
+        state.status = requestStates.failed;
+        state.error = action.error;
       });
   },
 });
@@ -94,5 +136,7 @@ export const getCustomersError = (state) => state.customers.error;
 export const getCustomerById = (id) => (state) => {
   return state.customers.customers.find((c) => c._id === id);
 };
+
+export const { resetError, setStatus } = customersSlice.actions;
 
 export default customersSlice.reducer;

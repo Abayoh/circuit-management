@@ -14,7 +14,7 @@ const checkAuth = (routes, location, navigate, user) => {
   }
   //stop user from visiting the login page when l
   if (location.pathname === '/login' && user) {
-    return navigate(-1);
+    return navigate(-1, {replace:true});
   }
   
   //go to 404 page is the page is not available

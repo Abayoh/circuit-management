@@ -1,9 +1,9 @@
 import React from 'react';
-import CircuitsList from './components/CircuitsList';
+import CircuitsList from './CircuitsList';
 
 
 const Circuits = React.lazy(() => import('./Circuits'));
-const AddCircuits = React.lazy(() => import('../circuits/components/AddCircuits'));
+const AddEditCircuit = React.lazy(() => import('./AddEditCircuit'));
 
 const circuitsRoutes = [
   {
@@ -18,9 +18,14 @@ const circuitsRoutes = [
         name:'Circuits',
       },
       { 
-        path: 'add-circuits',
-        element: <AddCircuits />,
-        name:'Add Circuits',
+        path: 'add',
+        element: <AddEditCircuit />,
+        name:'Add Circuit',
+      },
+      { 
+        path: 'edit/:id',
+        element: <AddEditCircuit />,
+        name:'Edit Circuit',
       },
     ]
   },
