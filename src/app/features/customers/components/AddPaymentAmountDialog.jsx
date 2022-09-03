@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import Dialog from '@mui/material/Dialog';
@@ -45,8 +47,9 @@ export default function AddPaymentAmountDialog({ open, onClose }) {
   };
 
   const handleClose = (hasCancel) => {
+    const name = uuidv4()
     if (selectedFile && !hasCancel) {
-      const cheque = { amount, file: selectedFile };
+      const cheque = { amount, file: selectedFile, name };
       onClose(cheque);
     } else {
       onClose(null);

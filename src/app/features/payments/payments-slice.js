@@ -3,7 +3,9 @@ import {
   createAsyncThunk,
   createSelector,
 } from '@reduxjs/toolkit';
-import { axiosPrivate } from '../../services/axios-instance';
+import { axiosPrivate, configRequest } from '../../services/axios-instance';
+
+import { setAccessToken } from '../sessions/session-slice';
 
 const URL = '/payments';
 
@@ -22,8 +24,22 @@ export const fetchPayments = createAsyncThunk(
 );
 export const addPayments = createAsyncThunk(
   'payments/savePayments',
-  async (data) => {
+  async (data, thunkApi) => {
+    const { getState, dispatch } = thunkApi;
+    const token = getState().session.accessToken;
+    debugger;
+    const { reqInterceptor, resInterceptor } = configRequest(
+      token,
+      (newToken) => {
+        dispatch(setAccessToken(newToken));
+      }
+    );
+
     const response = await axiosPrivate.post(URL, data);
+
+    axiosPrivate.interceptors.request.eject(reqInterceptor);
+    axiosPrivate.interceptors.response.eject(resInterceptor);
+
     return response.data;
   }
 );
@@ -38,13 +54,15 @@ const paymentsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchPayments.fulfilled, (state, action) => {
+        console.log('succeeded');
         state.status = 'succeeded';
         state.payments = action.payload;
         state.state = 'idle';
       })
       .addCase(fetchPayments.rejected, (state, action) => {
+        console.log(action.error.message);
         state.status = 'failed';
-        state.error = action.error.message;
+        state.error = action.error;
       });
   },
 });

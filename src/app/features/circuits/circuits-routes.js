@@ -2,7 +2,7 @@ import React from 'react';
 import CircuitsList from './CircuitsList';
 
 
-const Circuits = React.lazy(() => import('./Circuits'));
+const Circuits = React.lazy(() => import('.'));
 const AddEditCircuit = React.lazy(() => import('./AddEditCircuit'));
 
 const circuitsRoutes = [

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { UNSAFE_NavigationContext as NavigationContext } from 'react-router-dom';
 
-export function useBlocker(blocker, when = true) {
+export function useBlocker(retryNavigation, when = true) {
   const { navigator } = React.useContext(NavigationContext);
+
   React.useEffect(() => {
+    
     if (!when) return;
     const unblock = navigator.block((tx) => {
       const autoUnblockingTx = {
@@ -13,10 +15,10 @@ export function useBlocker(blocker, when = true) {
           tx.retry();
         },
       };
-      blocker(autoUnblockingTx);
+      retryNavigation(autoUnblockingTx);
     });
     return unblock;
-  }, [navigator, blocker, when]);
+  }, [navigator, retryNavigation, when]);
 }
 
 export default function usePrompt(prompt, when = true) {
@@ -27,15 +29,17 @@ export default function usePrompt(prompt, when = true) {
     canNavigate = nav;
   };
 
-  const blocker = (tx) => {
+  const retryNavigation = (tx) => {
     if (!location) {
       setLocation(tx.location);
       prompt();
     } else {
-      if (canNavigate) tx.retry();
+      if (canNavigate) tx.retry(); //if the user agrees to to navigate
       setLocation(null);
     }
   };
-  useBlocker(blocker, when);
+
+  
+  useBlocker(retryNavigation, when);
   return { location, setCanNavigate };
 }

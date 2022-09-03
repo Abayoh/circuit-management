@@ -1,4 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addPayments } from '../payments/payments-slice';
+import { useParams } from 'react-router-dom';
+import { getCustomerById } from './services/customers-slice';
+import { selectCircuitByCustomerId } from '../circuits/services/circuit-slice';
+import { selectCurrentPaymentsByCustomerId } from '../payments/payments-slice';
+import { useNavigate } from 'react-router-dom';
+import usePrompt from '../../hooks/use-block-transition';
+import lastDayOfMonth from 'date-fns/lastDayOfMonth';
+import addMonths from 'date-fns/addMonths';
+import { ObjectID } from 'bson';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
@@ -6,20 +18,11 @@ import Grid from '@mui/material/Grid';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Stack from '@mui/material/Stack';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getCustomerById } from './services/customers-slice';
-import { selectCircuitByCustomerId } from '../circuits/services/circuit-slice';
-import { selectCurrentPaymentsByCustomerId } from '../payments/payments-slice';
-import { useNavigate } from 'react-router-dom';
 import PageHeader from '../../components/PageTitle';
 import CurrentPaymentList from './components/CurrentPaymentList';
-import lastDayOfMonth from 'date-fns/lastDayOfMonth';
-import addMonths from 'date-fns/addMonths';
 import NewPaymentList from './components/NewPaymentList';
 import { Typography } from '@mui/material';
 import AddPaymentAmountDialog from './components/AddPaymentAmountDialog';
-import usePrompt from '../../hooks/use-block-transition';
 import ConfirmationDialogRaw from '../../components/Confirm';
 
 function ccyFormat(num) {
@@ -28,7 +31,7 @@ function ccyFormat(num) {
 
 const AddCustomerPayments = () => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
-  const [confirmIsOpen, setConfirmIsOpen] = useState(false);
+  const [confirmNavigationIsOpen, setConfirmNavigationIsOpen] = useState(false);
 
   const [cheque, setCheque] = useState(null);
   const [newPayments, setNewPayments] = useState([]);
@@ -48,6 +51,7 @@ const AddCustomerPayments = () => {
   );
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const currentPaymentsForAdding = customerCircuits.reduce((p, circuit) => {
@@ -64,6 +68,7 @@ const AddCustomerPayments = () => {
       }
     }, []);
     setcurrentPaymentsForAddingNewPayment(currentPaymentsForAdding);
+    /*eslint-disable */
   }, [customerCurrentPayments, customerCircuits]);
 
   const handleAddPaymentDialogClose = (newCheque) => {
@@ -164,6 +169,7 @@ const AddCustomerPayments = () => {
     if (!numberOfMonths) throw new Error('numberOfMonths Cannot is required');
 
     const currentPaymentEndDate = currentPayment?.billed.to || 0;
+    const tempPreviousId = new ObjectID();
     return {
       amount: amount,
       receiveBy: userName,
@@ -173,15 +179,15 @@ const AddCustomerPayments = () => {
       },
       customerName: customer.name,
       customerId: id,
-      chequeId: cheque?._id || '',
-      current: false,
+      chequeId: cheque?.name,
+      current: true,
       billed: {
         from: getNewPaymentStartDate(currentPaymentEndDate),
         to: getNewPaymentEndDate(currentPaymentEndDate, numberOfMonths),
       },
       balance: balance,
       previousBalance: {
-        paymentId: currentPayment?.id || '',
+        paymentId: currentPayment?._id || tempPreviousId,
         amount: currentPayment?.balance || 0,
       },
       dateDeposited: Date.now(),
@@ -202,17 +208,38 @@ const AddCustomerPayments = () => {
     setNewPayments(editedPayments);
   };
 
-  const prompt = () => {
-    setConfirmIsOpen(true);
+  const confirmNavigation = () => {
+    setConfirmNavigationIsOpen(true);
   };
 
-  const { location, setCanNavigate } = usePrompt(prompt, cheque !== null);
+  const { location, setCanNavigate } = usePrompt(confirmNavigation, cheque !== null);
 
-  const handleConfirmClose = (isConfirmed) => {
-    setConfirmIsOpen(false);
+  const handleCanNavigateClose = (isConfirmed) => {
+    setConfirmNavigationIsOpen(false);
     setCanNavigate(isConfirmed);
     navigate(location.pathname);
   };
+
+  const handleSavePayments = () => {
+    const { file, ...chequeInfo } = cheque;
+    const formData = new FormData();
+
+    //update all the current payments
+    const updatedCurrentPayments = customerCurrentPayments.map(p=>({_id:p._id, current:false}))
+    
+    //formData does not take objects or array therefore convert the object and array to string
+    const paymentsJson = JSON.stringify(newPayments);
+    const chequeInfoJson = JSON.stringify(chequeInfo);
+    const oldPaymentsJson = JSON.stringify(updatedCurrentPayments);
+
+    formData.append('file', file);
+    formData.append('chequeInfo', chequeInfoJson);
+    formData.append('payments', paymentsJson);
+    formData.append('oldPayments', oldPaymentsJson);
+
+    dispatch(addPayments(formData));
+  };
+
   return (
     <Box>
       {customer && (
@@ -234,8 +261,8 @@ const AddCustomerPayments = () => {
             <ConfirmationDialogRaw
               id='ringtone-menu'
               keepMounted
-              open={confirmIsOpen}
-              onClose={handleConfirmClose}
+              open={confirmNavigationIsOpen}
+              onClose={handleCanNavigateClose}
               message='You have unsave changes! You will loose your changes if you leave!'
               title='Are you sure you want to leave?'
             />
@@ -307,6 +334,7 @@ const AddCustomerPayments = () => {
                     <Button
                       disabled={balanceAmountOnCheque !== 0}
                       variant='contained'
+                      onClick={handleSavePayments}
                     >
                       Save Payments
                     </Button>
@@ -374,7 +402,6 @@ const calculatePaymentAmount = (circuit, currentPayment, numberOfMonths) => {
 };
 
 const getTempCurrentPayment = (circuit, userName, customer) => {
-  
   return {
     amount: 'NEW',
     receiveBy: userName,
