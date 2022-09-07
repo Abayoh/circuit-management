@@ -49,7 +49,6 @@ export default function AddPaymentAmountDialog({ open, onClose }) {
   const handleClose = (hasCancel) => {
     const name = uuidv4();
     if (selectedFile && !hasCancel) {
-      debugger;
       const fileExt = selectedFile.type.split('/')[1];
       const cheque = { amount, file: selectedFile, name: `${name}.${fileExt}` };
       onClose(cheque);

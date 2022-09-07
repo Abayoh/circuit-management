@@ -3,4 +3,5 @@ export const requestStates = {
   idle: 'idle',
   succeeded: 'succeeded',
   failed: 'failed',
+  loaded: 'loaded',
 };

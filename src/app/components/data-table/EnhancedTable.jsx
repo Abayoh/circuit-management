@@ -49,8 +49,8 @@ function EnhancedTable({
   selectDisabled = false,
   toolbarContent,
   idFieldName,
-  enableActionCell=false,
-  actionButtons = ()=>{},
+  enableActionCell = false,
+  actionButtons = () => {},
   onItemsSelected = (items) => {},
   onItemsDeselected = (items) => {},
 }) {
@@ -202,10 +202,9 @@ function EnhancedTable({
                           {row[cell.id]}
                         </TableCell>
                       ))}
-                      {enableActionCell && (<TableCell>
-                           {actionButtons(row)}
-                        </TableCell>)
-                        }
+                      {enableActionCell && (
+                        <TableCell>{actionButtons(row)}</TableCell>
+                      )}
                     </TableRow>
                   );
                 })}

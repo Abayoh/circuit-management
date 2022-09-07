@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addPayments } from '../payments/payments-slice';
+import {
+  addPayments,
+  resetError,
+  setStatus,
+  getPaymentsError,
+} from '../payments/payments-slice';
 import { useParams } from 'react-router-dom';
 import { getCustomerById } from './services/customers-slice';
 import { selectCircuitByCustomerId } from '../circuits/services/circuit-slice';
@@ -9,6 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import usePrompt from '../../hooks/use-block-transition';
 import lastDayOfMonth from 'date-fns/lastDayOfMonth';
 import addMonths from 'date-fns/addMonths';
+import useNotify from '../../hooks/use-notify';
+import useRequestStatus from '../../hooks/use-request-status';
 import { ObjectID } from 'bson';
 
 import Box from '@mui/material/Box';
@@ -24,6 +31,7 @@ import NewPaymentList from './components/NewPaymentList';
 import { Typography } from '@mui/material';
 import AddPaymentAmountDialog from './components/AddPaymentAmountDialog';
 import ConfirmationDialogRaw from '../../components/Confirm';
+import Loading from '../../components/Loading';
 
 function ccyFormat(num) {
   return `$${num}.00`;
@@ -50,10 +58,31 @@ const AddCustomerPayments = () => {
     selectCurrentPaymentsByCustomerId(state, id)
   );
 
+  const { status } = useSelector((state) => state.payments);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const notify = useNotify();
+  const errorMessage = useSelector(getPaymentsError)?.message || '';
+
+
+  const onSuccess = (loaded) => {
+    if (!loaded) {
+      notify('Added successfully', { x: 'right', y: 'bottom' }, 'success');
+      //resetForm();
+      navigate('/customers');
+    }
+  };
+  const onError = () => {
+    notify(errorMessage, { x: 'right', y: 'bottom' }, 'error');
+    dispatch(resetError());
+  };
+
+  const isLoading = useRequestStatus(status, setStatus, onSuccess, onError);
+
   useEffect(() => {
+    debugger;
     const currentPaymentsForAdding = customerCircuits.reduce((p, circuit) => {
       //find current payment for each circuit
       let payment = customerCurrentPayments.find(
@@ -331,7 +360,7 @@ const AddCustomerPayments = () => {
                       </CardContent>
                     </Card>
                     <Button
-                      disabled={balanceAmountOnCheque !== 0}
+                      disabled={balanceAmountOnCheque !== 0 || isLoading}
                       variant='contained'
                       onClick={handleSavePayments}
                     >
@@ -344,6 +373,7 @@ const AddCustomerPayments = () => {
           </Grid>
         </>
       )}
+      {isLoading && <Loading />}
     </Box>
   );
 };

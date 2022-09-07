@@ -3,6 +3,7 @@ import {
   createAsyncThunk,
   createSelector,
 } from '@reduxjs/toolkit';
+import { requestStates } from '../../models/request-state';
 import { axiosPrivate, configRequest } from '../../services/axios-instance';
 
 import { setAccessToken } from '../sessions/session-slice';
@@ -27,7 +28,7 @@ export const addPayments = createAsyncThunk(
   async (data, thunkApi) => {
     const { getState, dispatch } = thunkApi;
     const token = getState().session.accessToken;
-    debugger;
+
     const { reqInterceptor, resInterceptor } = configRequest(
       token,
       (newToken) => {
@@ -47,19 +48,50 @@ export const addPayments = createAsyncThunk(
 const paymentsSlice = createSlice({
   name: 'payments',
   initialState,
-  reducers: {},
+  reducers: {
+    setStatus(state, { payload }) {
+      state.status = payload;
+    },
+    resetError(state) {
+      state.error = null;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchPayments.pending, (state) => {
-        state.status = 'loading';
+        state.status = requestStates.loading;
       })
       .addCase(fetchPayments.fulfilled, (state, action) => {
-        console.log('succeeded');
-        state.status = 'succeeded';
+        state.status = requestStates.loaded;
         state.payments = action.payload;
-        state.state = 'idle';
       })
       .addCase(fetchPayments.rejected, (state, action) => {
+        state.status = requestStates.failed;
+        state.error = action.error;
+      })
+      .addCase(addPayments.pending, (state) => {
+        state.status = requestStates.loading;
+      })
+      .addCase(addPayments.fulfilled, (state, action) => {
+        state.status = requestStates.succeeded;
+        const { newPayments } = action.payload;
+        
+        state.payments = state.payments.reduce((nps, p) => {
+          
+          //if it is not a current payment skip it
+          if (!p.current) return [...nps, p];
+          //check if the current payment is in the newPayment list
+          const newPayment = newPayments.find(
+            (np) => np.circuit.name === p.circuit.name
+          );
+          //if it is not there skip it
+          if (!newPayment) return [...nps, p];
+
+          //edit the current payment
+          return [...nps,  { ...p, current: false }];
+        }, [...newPayments]);
+      })
+      .addCase(addPayments.rejected, (state, action) => {
         console.log(action.error.message);
         state.status = 'failed';
         state.error = action.error;
@@ -83,5 +115,7 @@ export const selectCurrentPaymentsByCustomerId = createSelector(
     });
   }
 );
+
+export const { resetError, setStatus } = paymentsSlice.actions;
 
 export default paymentsSlice.reducer;
