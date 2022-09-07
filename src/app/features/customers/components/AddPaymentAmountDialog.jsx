@@ -47,9 +47,11 @@ export default function AddPaymentAmountDialog({ open, onClose }) {
   };
 
   const handleClose = (hasCancel) => {
-    const name = uuidv4()
+    const name = uuidv4();
     if (selectedFile && !hasCancel) {
-      const cheque = { amount, file: selectedFile, name };
+      debugger;
+      const fileExt = selectedFile.type.split('/')[1];
+      const cheque = { amount, file: selectedFile, name: `${name}.${fileExt}` };
       onClose(cheque);
     } else {
       onClose(null);
@@ -94,7 +96,13 @@ export default function AddPaymentAmountDialog({ open, onClose }) {
           <Stack direction='row' spacing={2} alignItems='center'>
             <Button variant='contained' component='label'>
               Upload Cheque
-              <input name='file' hidden type='file' onChange={handleChange} />
+              <input
+                name='file'
+                hidden
+                type='file'
+                onChange={handleChange}
+                accept='image/*'
+              />
             </Button>
             <Typography sx={{ color: fileName ? 'text.main' : 'red' }}>
               {fileName || error.file}

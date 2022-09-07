@@ -212,7 +212,10 @@ const AddCustomerPayments = () => {
     setConfirmNavigationIsOpen(true);
   };
 
-  const { location, setCanNavigate } = usePrompt(confirmNavigation, cheque !== null);
+  const { location, setCanNavigate } = usePrompt(
+    confirmNavigation,
+    cheque !== null
+  );
 
   const handleCanNavigateClose = (isConfirmed) => {
     setConfirmNavigationIsOpen(false);
@@ -224,18 +227,14 @@ const AddCustomerPayments = () => {
     const { file, ...chequeInfo } = cheque;
     const formData = new FormData();
 
-    //update all the current payments
-    const updatedCurrentPayments = customerCurrentPayments.map(p=>({_id:p._id, current:false}))
-    
+    chequeInfo.customerId = id;
     //formData does not take objects or array therefore convert the object and array to string
     const paymentsJson = JSON.stringify(newPayments);
     const chequeInfoJson = JSON.stringify(chequeInfo);
-    const oldPaymentsJson = JSON.stringify(updatedCurrentPayments);
 
     formData.append('file', file);
     formData.append('chequeInfo', chequeInfoJson);
     formData.append('payments', paymentsJson);
-    formData.append('oldPayments', oldPaymentsJson);
 
     dispatch(addPayments(formData));
   };

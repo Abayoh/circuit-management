@@ -78,9 +78,9 @@ export const selectPaymentsByCustomerId = createSelector(
 export const selectCurrentPaymentsByCustomerId = createSelector(
   [selectAllPayments, (state, customerId) => customerId],
   (payments, customerId) => {
-    return payments.filter(
-      (payment) => payment.customerId === customerId && payment.current
-    );
+    return payments.filter((payment) => {
+      return payment.customerId === customerId && payment.current;
+    });
   }
 );
 
