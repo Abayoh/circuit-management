@@ -1,13 +1,26 @@
 import React from 'react';
 
-const Users = React.lazy(() => import('./Users'));
+const Users = React.lazy(() => import('./'));
+const UserList = React.lazy(() => import('./UserList'));
+const AddEditUser = React.lazy(()=> import('./AddEditUser'))
 
 const usersRoutes = [
   {
     path: 'users',
     element: <Users />,
-    name: 'Users',
     icon: 'people',
+    children: [
+      {
+        index: true,
+        element: <UserList />,
+        name: 'Users',
+      },
+      { 
+        path: 'add',
+        element: <AddEditUser />,
+        name:'Add Circuit',
+      },
+    ],
   },
 ];
 

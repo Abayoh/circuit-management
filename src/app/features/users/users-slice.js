@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { requestStates } from '../../models/request-state';
+import { setAccessToken } from '../sessions/session-slice';
+import { configRequest, axiosPrivate } from '../../services/axios-instance';
 
-const URL = 'http://localhost:3500/users';
+const URL = '/users';
 
 const initialState = {
   users: [],
@@ -9,27 +11,89 @@ const initialState = {
   error: null,
 };
 
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await axios.get(URL);
-  return response.data;
-});
+export const fetchUsers = createAsyncThunk(
+  'users/fetchUsers',
+  async (_, apiThunk) => {
+    const { getState, dispatch } = apiThunk;
+    const token = getState().session.accessToken;
+    debugger;
+    const { reqInterceptor, resInterceptor } = configRequest(
+      token,
+      (newToken) => {
+        dispatch(setAccessToken(newToken));
+      }
+    );
+    const response = await axiosPrivate.get(URL);
+
+    axiosPrivate.interceptors.request.eject(reqInterceptor);
+    axiosPrivate.interceptors.response.eject(resInterceptor);
+
+    return response.data;
+  }
+);
+export const addUser = createAsyncThunk(
+  'users/addUser',
+  async (user, apiThunk) => {
+    const { getState, dispatch } = apiThunk;
+    const token = getState().session.accessToken;
+    debugger;
+    const { reqInterceptor, resInterceptor } = configRequest(
+      token,
+      (newToken) => {
+        dispatch(setAccessToken(newToken));
+      }
+    );
+    const response = await axiosPrivate.post(URL, user);
+
+    axiosPrivate.interceptors.request.eject(reqInterceptor);
+    axiosPrivate.interceptors.response.eject(resInterceptor);
+
+    return response.data;
+  }
+);
+export const editUser = createAsyncThunk(
+  'users/editUser',
+  async (data, apiThunk) => {
+    const { getState, dispatch } = apiThunk;
+    const token = getState().session.accessToken;
+    
+    const { reqInterceptor, resInterceptor } = configRequest(
+      token,
+      (newToken) => {
+        dispatch(setAccessToken(newToken));
+      }
+    );
+    const response = await axiosPrivate.patch(`${URL}/${data.id}`, data.user);
+
+    axiosPrivate.interceptors.request.eject(reqInterceptor);
+    axiosPrivate.interceptors.response.eject(resInterceptor);
+
+    return response.data;
+  }
+);
 
 const usersSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    setStatus(state, action) {
+      state.status = action.payload;
+    },
+    resetError(state) {
+      state.error = null;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchUsers.pending, (state) => {
-        state.status = 'loading';
+        state.status = requestStates.loading;
       })
       .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = requestStates.loaded;
         state.users = action.payload;
-        state.state = 'idle';
       })
       .addCase(fetchUsers.rejected, (state, action) => {
-        state.status = 'failed';
+        state.status = requestStates.failed;
         state.error = action.error.message;
       });
   },
@@ -38,5 +102,9 @@ const usersSlice = createSlice({
 export const selectAllUsers = (state) => state.users.users;
 export const getUsersStatus = (state) => state.users.status;
 export const getUsersError = (state) => state.users.error;
+export const getUserById = (id) => (state) =>
+  state.circuits.circuits.find((u) => u._id === id);
+
+export const { setStatus, resetError } = usersSlice.actions;
 
 export default usersSlice.reducer;
