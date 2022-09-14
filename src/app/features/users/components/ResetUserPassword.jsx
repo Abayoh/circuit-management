@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import TextInput from '../../../components/form-inputs/TextInput.jsx';
 import SubmitButton from '../../../components/form-inputs/SubmitButton.jsx';
-
+import Button from '@mui/material/Button'
 const validateForm = {
   password: Yup.string()
     .required('No password provided.')
@@ -28,10 +28,10 @@ const newPassword = {
 };
 
 
-function UserForm({ isLoading, onSubmit }) {
+function UserForm({ user, isLoading, onSubmit, onCancel }) {
   const handleSubmit = (values, action) => {
-    const { confirmPassword, ...newValues } = values;
-    onSubmit(newValues, action);
+    const password = {_id:user._id, password:values.password};
+    onSubmit(password, action);
   };
   return (
     <Formik
@@ -60,10 +60,24 @@ function UserForm({ isLoading, onSubmit }) {
             />
           </Grid>
 
-          <Grid item md={6} xs={12}>
+          <Grid
+            container
+            item
+            xs={12}
+            direction='row'
+            justifyContent='flex-end'
+          >
             <SubmitButton isLoading={isLoading} variant='contained'>
               Save
             </SubmitButton>
+            <Button
+              variant='outlined'
+              color='error'
+              onClick={onCancel}
+              sx={{ ml: 1 }}
+            >
+              Cancel
+            </Button>
           </Grid>
         </Grid>
       </Form>

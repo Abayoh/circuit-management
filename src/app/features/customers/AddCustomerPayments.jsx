@@ -82,7 +82,6 @@ const AddCustomerPayments = () => {
   const isLoading = useRequestStatus(status, setStatus, onSuccess, onError);
 
   useEffect(() => {
-    debugger;
     const currentPaymentsForAdding = customerCircuits.reduce((p, circuit) => {
       //find current payment for each circuit
       let payment = customerCurrentPayments.find(

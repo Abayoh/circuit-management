@@ -5,7 +5,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import MultipleSelect from '../../../components/form-inputs/SelectMultiple.jsx';
-
+import Button from '@mui/material/Button';
 import SubmitButton from '../../../components/form-inputs/SubmitButton.jsx';
 
 const validateForm = {
@@ -18,10 +18,10 @@ const roles = [
   { name: 'Finance', value: 'finance' },
 ];
 
-function UserForm({ isLoading, onSubmit, oldRoles }) {
+function EditUserRoles({user, isLoading, onCancel, onSubmit }) {
   return (
     <Formik
-      initialValues={oldRoles ?? []}
+      initialValues={user ?? { roles: [] }}
       validationSchema={Yup.object(validateForm)}
       onSubmit={onSubmit}
     >
@@ -36,10 +36,24 @@ function UserForm({ isLoading, onSubmit, oldRoles }) {
             />
           </Grid>
 
-          <Grid item md={6} xs={12}>
+          <Grid
+            container
+            item
+            xs={12}
+            direction='row'
+            justifyContent='flex-end'
+          >
             <SubmitButton isLoading={isLoading} variant='contained'>
               Save
             </SubmitButton>
+            <Button
+              variant='outlined'
+              color='error'
+              onClick={onCancel}
+              sx={{ ml: 1 }}
+            >
+              Cancel
+            </Button>
           </Grid>
         </Grid>
       </Form>
@@ -47,4 +61,4 @@ function UserForm({ isLoading, onSubmit, oldRoles }) {
   );
 }
 
-export default UserForm;
+export default EditUserRoles;

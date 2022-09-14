@@ -19,12 +19,10 @@ const useRequestStatus = (
     } else if (state === requestStates.loading) {
       setIsLoading(true);
     } else if (state === requestStates.succeeded) {
-      
       dispatch(setState(requestStates.idle));
       setIsLoading(false);
       onSuccess();
-    }
-    else if(state === requestStates.loaded){
+    } else if (state === requestStates.loaded) {
       dispatch(setState(requestStates.idle));
       setIsLoading(false);
       onSuccess(requestStates.loaded);
