@@ -66,7 +66,6 @@ const AddCustomerPayments = () => {
   const notify = useNotify();
   const errorMessage = useSelector(getPaymentsError)?.message || '';
 
-
   const onSuccess = (loaded) => {
     if (!loaded) {
       notify('Added successfully', { x: 'right', y: 'bottom' }, 'success');
@@ -82,19 +81,38 @@ const AddCustomerPayments = () => {
   const isLoading = useRequestStatus(status, setStatus, onSuccess, onError);
 
   useEffect(() => {
-    const currentPaymentsForAdding = customerCircuits.reduce((p, circuit) => {
-      //find current payment for each circuit
-      let payment = customerCurrentPayments.find(
-        (cp) => cp.circuit.name === circuit.name
-      );
-      if (payment) {
-        return [...p, payment]; //if there is a payment return it
+    //select current payments for each customer circuit
+    let currentPaymentsForAdding;
+
+    if (!customer.isShareholder) {
+      currentPaymentsForAdding = customerCircuits.reduce((p, circuit) => {
+        //find current payment for each circuit
+        let payment = customerCurrentPayments.find(
+          (cp) => cp.circuit.name === circuit.name
+        );
+        if (payment) {
+          return [...p, payment]; //if there is a payment return it
+        } else {
+          //else create Temp Payment
+          payment = getTempCurrentPayment(circuit, 'TEMP', customer);
+          return [...p, payment];
+        }
+      }, []);
+    } else {
+      //is customerCurrentPayments is empty then create a temp payment
+      if (customerCurrentPayments.length === 0) {
+        currentPaymentsForAdding = [
+          getTempCurrentPayment(
+            { name: 'All Circuits', cost: customer.shareMontlyCost },
+            'TEMP',
+            customer
+          ),
+        ];
       } else {
-        //else create Temp Payment
-        payment = getTempCurrentPayment(circuit, 'TEMP', customer);
-        return [...p, payment];
+        currentPaymentsForAdding = customerCurrentPayments;
       }
-    }, []);
+    }
+
     setcurrentPaymentsForAddingNewPayment(currentPaymentsForAdding);
     /*eslint-disable */
   }, [customerCurrentPayments, customerCircuits]);
@@ -142,10 +160,15 @@ const AddCustomerPayments = () => {
 
     let newCurrentBalanceOnDisplay = balanceAmountOnCheque;
     const payments = [];
-    const numberOfMonths = 3;
+    const numberOfMonths = 3; //default number of months
     circuitNames.forEach((name) => {
       //get circuit for this item
-      const circuit = customerCircuits.find((c) => c.name === name);
+      let circuit = null;
+      if (!customer.isShareholder) {
+        circuit = customerCircuits.find((c) => c.name === name);
+      } else {
+        circuit = { name: 'All Circuits', cost: customer.shareMontlyCost };
+      }
       //get the current payment for the above circuit
       const currentPayment = customerCurrentPayments.find(
         (p) => p.circuit.name === circuit.name
@@ -434,8 +457,8 @@ const getTempCurrentPayment = (circuit, userName, customer) => {
     amount: 'NEW',
     receiveBy: userName,
     circuit: {
-      name: circuit.name,
-      cost: circuit.cost,
+      name: circuit ? circuit.name : 'All Circuits',
+      cost: circuit ? circuit.cost : customer.shareMontlyCost,
     },
     customerName: customer.name,
     customerId: customer._id,

@@ -68,6 +68,8 @@ const CustomersList = () => {
   );
 
   const navigateToMakePayments = (customerId) => {
+    
+    const {isShareholder} = customers.find((customer) => customer._id === customerId);
     dispatch(fetchCircuits());
     dispatch(fetchPayments());
     navigate(customerId);
