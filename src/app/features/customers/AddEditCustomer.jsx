@@ -17,7 +17,8 @@ import CustomerForm from './components/CustomerForm';
 
 const newCustomer = {
   name: '',
-  type: '',
+  share: 0,
+  isShareholder: false,
   contacts: '',
   address: {
     address1: '',

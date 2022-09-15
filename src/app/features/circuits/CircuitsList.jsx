@@ -32,6 +32,12 @@ const headCells = [
     disablePadding: false,
     label: 'Cost',
   },
+  {
+    id: 'miu',
+    numeric: true,
+    disablePadding: false,
+    label: 'MIU',
+  },
 ];
 function CircuitsList() {
   const circuits = useSelector(selectAllCircuits);

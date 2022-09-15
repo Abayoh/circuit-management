@@ -17,6 +17,7 @@ const validateForm = {
   customerName: Yup.string().required('customer name is required'),
   capacity: Yup.string().required('Capacity is required'),
   cost: Yup.number().required('Cost is required'),
+  miu: Yup.number().required('Cost is required').min(0),
 };
 
 const newCircuit = {
@@ -25,6 +26,7 @@ const newCircuit = {
   customerName: '',
   capacity: '',
   cost: '',
+  miu: 0,
 };
 
 function CircuitForm({ customers, circuit, isLoading, editing, onSubmit }) {
@@ -80,6 +82,15 @@ function CircuitForm({ customers, circuit, isLoading, editing, onSubmit }) {
               name='capacity'
               fullWidth
               variant='outlined'
+            />
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <TextInput
+              label='MIU'
+              name='miu'
+              fullWidth
+              variant='outlined'
+              type='number'
             />
           </Grid>
           <Grid item md={6} xs={12}>
