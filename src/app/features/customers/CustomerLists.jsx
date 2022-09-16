@@ -58,6 +58,7 @@ const CustomersList = () => {
         <Grid key={customer._id} item>
           <CustomerCard
             name={customer.name}
+            imageUrl={customer.imageUrl}
             circuitsCount={5}
             onMakePaymentsClick={() => navigateToMakePayments(customer._id)}
             onEditPaymentClick={() => navigateToEditCustomer(customer._id)}

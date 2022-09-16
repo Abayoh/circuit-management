@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 
 export default function CustomerCard({
   name,
+  imageUrl,
   circuitsCount,
   onMakePaymentsClick,
   onEditPaymentClick,
@@ -18,7 +19,7 @@ export default function CustomerCard({
         component='img'
         alt='green iguana'
         height='140'
-        image='/assets/images/lizard.jpeg'
+        image={imageUrl || `/assets/images/lizard.jpeg`}
       />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>

@@ -9,8 +9,10 @@ import {
   setStatus,
   editCustomer,
 } from './services/customers-slice';
+import { v4 as uuidv4 } from 'uuid';
 import useRequestStatus from '../../hooks/use-request-status';
 import useNotify from '../../hooks/use-notify';
+
 import PageToolsbar from '../../components/PageToolsbar';
 import Box from '@mui/material/Box';
 import CustomerForm from './components/CustomerForm';
@@ -20,6 +22,7 @@ const newCustomer = {
   share: 0,
   isShareholder: false,
   contacts: '',
+  file: null,
   address: {
     address1: '',
     street: '',
@@ -60,10 +63,20 @@ function AddEditCustomer() {
       delete values._id;
       dispatch(editCustomer({ id, customer: values }));
     } else {
-      dispatch(addCustomer(values));
+      const name = `${uuidv4()}.${values.file.type.split('/')[1]}`;
+      const { file, ...rest } = values;
+      const custInfo = JSON.stringify(rest);
+
+      const formData = new FormData();
+
+      formData.append('file', file);
+      formData.append('custInfo', custInfo);
+      formData.append('fileName', name);
+
+      dispatch(addCustomer(formData));
     }
 
-    resetForm = action.resetForm();
+    resetForm = action.resetForm;
   };
 
   return (

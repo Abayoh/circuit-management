@@ -29,6 +29,18 @@ const newCircuit = {
   miu: 0,
 };
 
+const capacityOptions = [
+  { value: 'stm1', label: 'STM1' },
+  { value: 'stm4', label: 'STM4' },
+  { value: 'stm16', label: 'STM16' },
+  { value: 'stm64', label: 'STM64' },
+  { value: '1ge', label: '1GE' },
+  { value: '10ge', label: '10GE' },
+  { value: '100ge', label: '100GE' },
+  { value: '300me', label: '300ME' },
+  { value: '600me', label: '600ME' },
+];
+
 function CircuitForm({ customers, circuit, isLoading, editing, onSubmit }) {
   return (
     <Formik
@@ -77,12 +89,19 @@ function CircuitForm({ customers, circuit, isLoading, editing, onSubmit }) {
           />
 
           <Grid item md={6} xs={12}>
-            <TextInput
+            <SelectInput
+              disabled={editing}
               label='Circuits Capacity'
               name='capacity'
               fullWidth
               variant='outlined'
-            />
+            >
+              {capacityOptions.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </SelectInput>
           </Grid>
           <Grid item md={6} xs={12}>
             <TextInput

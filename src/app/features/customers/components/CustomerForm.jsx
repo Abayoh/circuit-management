@@ -9,16 +9,23 @@ import SubmitButton from '../../../components/form-inputs/SubmitButton';
 import ShareDependentField from '../../../components/form-inputs/ShareDependentField.jsx';
 import CheckBoxInput from '../../../components/form-inputs/CheckBoxInput';
 import Paper from '@mui/material/Paper';
+import FileUploader from '../../../components/form-inputs/FileUploader';
 
 const validateForm = {
   name: Yup.string().required('Customer name is required'),
   contacts: Yup.string().required('Customer contact is Required'),
   isShareholder: Yup.boolean(),
-  share: Yup.number()
-    .when('isShareholder', {
-      is: true,
-      then: Yup.number().min(1).max(100).required('Share is required'),
+  share: Yup.number().when('isShareholder', {
+    is: true,
+    then: Yup.number().min(1).max(100).required('Share is required'),
+  }),
+  file: Yup.mixed()
+
+    .required('file is required')
+    .test('fileSize', 'File size must be less then 1MB', (value) => {
+      return value && value.size <= 1000000;
     }),
+
   address: Yup.object().shape({
     address1: Yup.string().required('address1 is required'),
     street: Yup.string().required('street is required'),
@@ -37,68 +44,68 @@ function AddCustomerForm({ customer, isLoading, onSubmit }) {
       >
         <Form>
           <Grid container spacing={3}>
+            <Grid item md={6} xs={12} container spacing={2} direction='column'>
+              <Grid item>
+                <TextInput fullWidth label='Customer Name' name='name' />
+              </Grid>
+              <Grid item>
+                <TextInput
+                  fullWidth
+                  label='Contact'
+                  name='contacts'
+                  variant='outlined'
+                  type='string'
+                />
+              </Grid>
+              <Grid item>
+                <CheckBoxInput label='Shareholder' name='isShareholder' />
+                <ShareDependentField
+                  label='Share'
+                  name='share'
+                  variant='outlined'
+                  type='number'
+                />
+              </Grid>
+              <Grid item>
+                <TextInput
+                  fullWidth
+                  label='Address'
+                  name='address.address1'
+                  variant='outlined'
+                />
+              </Grid>
+              <Grid item>
+                <TextInput
+                  fullWidth
+                  label='Street'
+                  name='address.street'
+                  variant='outlined'
+                />
+              </Grid>
+              <Grid item>
+                <TextInput
+                  fullWidth
+                  label='City'
+                  name='address.city'
+                  variant='outlined'
+                />
+              </Grid>
+              <Grid item>
+                <TextInput
+                  fullWidth
+                  label='County'
+                  name='address.county'
+                  variant='outlined'
+                />
+              </Grid>
+              <Grid item>
+                <SubmitButton isLoading={isLoading} variant='contained'>
+                  Save
+                </SubmitButton>
+              </Grid>
+            </Grid>
             <Grid item md={6} xs={12}>
-              <TextInput fullWidth label='Customer Name' name='name' />
-            </Grid>
-            <Grid item md={6} xs={12}></Grid>
-
-            <Grid item md={3} xs={12}>
-              <TextInput
-                fullWidth
-                label='Contact'
-                name='contacts'
-                variant='outlined'
-                type='string'
-              />
-            </Grid>
-            <Grid item xs={12} container direction='row'>
-              <CheckBoxInput label='Shareholder' name='isShareholder' />
-              <ShareDependentField
-                fullWidth
-                label='Share'
-                name='share'
-                variant='outlined'
-                type='number'
-              />
-            </Grid>
-            <Grid item md={3} xs={12}>
-              <TextInput
-                fullWidth
-                label='Address'
-                name='address.address1'
-                variant='outlined'
-              />
-            </Grid>
-
-            <Grid item md={6} xs={12}>
-              <TextInput
-                fullWidth
-                label='Street'
-                name='address.street'
-                variant='outlined'
-              />
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <TextInput
-                fullWidth
-                label='City'
-                name='address.city'
-                variant='outlined'
-              />
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <TextInput
-                fullWidth
-                label='County'
-                name='address.county'
-                variant='outlined'
-              />
-            </Grid>
-
-            <Grid item md={6} xs={12}>
-              <SubmitButton isLoading={isLoading} variant='contained'>
-                Save
-              </SubmitButton>
+              <FileUploader btnLabel='Upload Image' enablePreview name='file' />
             </Grid>
           </Grid>
         </Form>
