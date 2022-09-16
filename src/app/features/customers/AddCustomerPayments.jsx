@@ -17,6 +17,7 @@ import addMonths from 'date-fns/addMonths';
 import useNotify from '../../hooks/use-notify';
 import useRequestStatus from '../../hooks/use-request-status';
 import { ObjectID } from 'bson';
+import { getUser } from '../sessions/session-slice';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -40,7 +41,7 @@ function ccyFormat(num) {
 const AddCustomerPayments = () => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
   const [confirmNavigationIsOpen, setConfirmNavigationIsOpen] = useState(false);
-
+  const user = useSelector(getUser);
   const [cheque, setCheque] = useState(null);
   const [newPayments, setNewPayments] = useState([]);
   const [
@@ -84,7 +85,7 @@ const AddCustomerPayments = () => {
     //select current payments for each customer circuit
     let currentPaymentsForAdding;
 
-    if (!customer.isShareholder) {
+    if (!customer?.isShareholder) {
       currentPaymentsForAdding = customerCircuits.reduce((p, circuit) => {
         //find current payment for each circuit
         let payment = customerCurrentPayments.find(
@@ -193,7 +194,7 @@ const AddCustomerPayments = () => {
         getNewPayment(
           circuit,
           currentPayment,
-          'Josephous Brown',
+          user.fullName,
           customer,
           numberOfMonths,
           amount,
