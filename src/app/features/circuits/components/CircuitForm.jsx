@@ -1,15 +1,16 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
-import MenuItem from '@mui/material/MenuItem';
 
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
+import Grid from '@mui/material/Grid';
+import MenuItem from '@mui/material/MenuItem';
 import TextInput from '../../../components/form-inputs/TextInput.jsx';
 import SelectInput from '../../../components/form-inputs/SelectInput';
 import InputWithAdorment from '../../../components/form-inputs/InputWithAdorment';
 import SubmitButton from '../../../components/form-inputs/SubmitButton.jsx';
 import DependentField from '../../../components/form-inputs/DependentField.jsx';
+import FormContainer from '../../../components/form-inputs/FormContainer.jsx';
 
 const validateForm = {
   name: Yup.string().required('Circuits name is required'),
@@ -43,91 +44,93 @@ const capacityOptions = [
 
 function CircuitForm({ customers, circuit, isLoading, editing, onSubmit }) {
   return (
-    <Formik
-      initialValues={circuit ? circuit : newCircuit}
-      validationSchema={Yup.object(validateForm)}
-      onSubmit={onSubmit}
-    >
-      <Form>
-        <Grid container spacing={3}>
-          <Grid item md={6} xs={12}>
-            <TextInput
-              label='Circuits Name'
-              name='name'
-              fullWidth
-              variant='outlined'
-            />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            {/* todo: add search fliter for get customer */}
-            {/* <SelectFliter
+    <FormContainer header={editing ? 'Edit Circuit' : 'New Circuit'}>
+      <Formik
+        initialValues={circuit ? circuit : newCircuit}
+        validationSchema={Yup.object(validateForm)}
+        onSubmit={onSubmit}
+      >
+        <Form>
+          <Grid container spacing={3}>
+            <Grid item md={6} xs={12}>
+              <TextInput
+                label='Circuits Name'
+                name='name'
+                fullWidth
+                variant='outlined'
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              {/* todo: add search fliter for get customer */}
+              {/* <SelectFliter
                             label="Select Customer"
                             name="customerId"
                             options={customers}
                         /> */}
-            <SelectInput
-              disabled={editing}
-              label='Select Customer'
-              name='customerName'
-              fullWidth
-              variant='outlined'
-            >
-              {customers.map((customer) => (
-                <MenuItem key={customer._id} value={customer.name}>
-                  {customer.name}
-                </MenuItem>
-              ))}
-            </SelectInput>
-          </Grid>
-          <DependentField
-            name='customerId'
-            type='hidden'
-            arr={customers}
-            dependentFieldName='customerName'
-            propertyName='_id'
-            searchOn='name'
-          />
+              <SelectInput
+                disabled={editing}
+                label='Select Customer'
+                name='customerName'
+                fullWidth
+                variant='outlined'
+              >
+                {customers.map((customer) => (
+                  <MenuItem key={customer._id} value={customer.name}>
+                    {customer.name}
+                  </MenuItem>
+                ))}
+              </SelectInput>
+            </Grid>
+            <DependentField
+              name='customerId'
+              type='hidden'
+              arr={customers}
+              dependentFieldName='customerName'
+              propertyName='_id'
+              searchOn='name'
+            />
 
-          <Grid item md={6} xs={12}>
-            <SelectInput
-              disabled={editing}
-              label='Circuits Capacity'
-              name='capacity'
-              fullWidth
-              variant='outlined'
-            >
-              {capacityOptions.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </SelectInput>
+            <Grid item md={6} xs={12}>
+              <SelectInput
+                disabled={editing}
+                label='Circuits Capacity'
+                name='capacity'
+                fullWidth
+                variant='outlined'
+              >
+                {capacityOptions.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </SelectInput>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextInput
+                label='MIU'
+                name='miu'
+                fullWidth
+                variant='outlined'
+                type='number'
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <InputWithAdorment
+                label='Cost'
+                name='cost'
+                type='number'
+                adornment='$'
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <SubmitButton isLoading={isLoading} variant='contained'>
+                Save
+              </SubmitButton>
+            </Grid>
           </Grid>
-          <Grid item md={6} xs={12}>
-            <TextInput
-              label='MIU'
-              name='miu'
-              fullWidth
-              variant='outlined'
-              type='number'
-            />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <InputWithAdorment
-              label='Cost'
-              name='cost'
-              type='number'
-              adornment='$'
-            />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <SubmitButton isLoading={isLoading} variant='contained'>
-              Save
-            </SubmitButton>
-          </Grid>
-        </Grid>
-      </Form>
-    </Formik>
+        </Form>
+      </Formik>
+    </FormContainer>
   );
 }
 

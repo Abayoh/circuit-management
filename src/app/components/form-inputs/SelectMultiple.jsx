@@ -23,7 +23,7 @@ export default function MultipleSelect({ options, ...props }) {
 
   return (
     <FormControl error={meta.touched && meta.error ? true : false} fullWidth>
-      <InputLabel id='select-error-label'>Age</InputLabel>
+      <InputLabel id='select-error-label'>Role</InputLabel>
       <Select
         labelId='select-error-label'
         id='select-error'
@@ -32,9 +32,6 @@ export default function MultipleSelect({ options, ...props }) {
         {...field}
         {...props}
         renderValue={(selected) => {
-          if (selected?.length === 0) {
-            return <em>Placeholder</em>;
-          }
 
           return selected?.join(', ');
         }}

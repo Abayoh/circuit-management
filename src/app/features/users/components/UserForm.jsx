@@ -7,6 +7,9 @@ import * as Yup from 'yup';
 import TextInput from '../../../components/form-inputs/TextInput.jsx';
 import SubmitButton from '../../../components/form-inputs/SubmitButton.jsx';
 import MultipleSelect from '../../../components/form-inputs/SelectMultiple.jsx';
+import Paper from '@mui/material/Paper';
+import { Typography } from '@mui/material';
+import FormContainer from '../../../components/form-inputs/FormContainer.jsx';
 
 const validateForm = {
   fullName: Yup.string().required('Circuits name is required').min(3),
@@ -51,73 +54,75 @@ function UserForm({ isLoading, onSubmit }) {
     onSubmit(newValues, action);
   };
   return (
-    <Formik
-      initialValues={newUser}
-      validationSchema={Yup.object(validateForm)}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <Grid container spacing={3}>
-          <Grid item md={6} xs={12}>
-            <TextInput
-              label='Full Name'
-              name='fullName'
-              fullWidth
-              variant='outlined'
-            />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <TextInput
-              label='Email'
-              name='email'
-              fullWidth
-              variant='outlined'
-            />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <TextInput
-              label='Phone Number'
-              name='phoneNumber'
-              fullWidth
-              variant='outlined'
-            />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <MultipleSelect
-              label='Select Roles'
-              options={roles}
-              name='roles'
-              fullWidth
-            />
-          </Grid>
+    <FormContainer header={'New User'}>
+      <Formik
+        initialValues={newUser}
+        validationSchema={Yup.object(validateForm)}
+        onSubmit={handleSubmit}
+      >
+        <Form>
+          <Grid container spacing={3}>
+            <Grid item md={6} xs={12}>
+              <TextInput
+                label='Full Name'
+                name='fullName'
+                fullWidth
+                variant='outlined'
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextInput
+                label='Email'
+                name='email'
+                fullWidth
+                variant='outlined'
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextInput
+                label='Phone Number'
+                name='phoneNumber'
+                fullWidth
+                variant='outlined'
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <MultipleSelect
+                label='Select Roles'
+                options={roles}
+                name='roles'
+                fullWidth
+              />
+            </Grid>
 
-          <Grid item md={6} xs={12}>
-            <TextInput
-              label='Password'
-              name='password'
-              fullWidth
-              variant='outlined'
-              type='password'
-            />
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <TextInput
-              label='Confirm Password'
-              name='confirmPassword'
-              fullWidth
-              variant='outlined'
-              type='password'
-            />
-          </Grid>
+            <Grid item md={6} xs={12}>
+              <TextInput
+                label='Password'
+                name='password'
+                fullWidth
+                variant='outlined'
+                type='password'
+              />
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <TextInput
+                label='Confirm Password'
+                name='confirmPassword'
+                fullWidth
+                variant='outlined'
+                type='password'
+              />
+            </Grid>
 
-          <Grid item md={6} xs={12}>
-            <SubmitButton isLoading={isLoading} variant='contained'>
-              Save
-            </SubmitButton>
+            <Grid item md={6} xs={12}>
+              <SubmitButton isLoading={isLoading} variant='contained'>
+                Save
+              </SubmitButton>
+            </Grid>
           </Grid>
-        </Grid>
-      </Form>
-    </Formik>
+        </Form>
+      </Formik>
+    </FormContainer>
   );
 }
 

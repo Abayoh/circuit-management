@@ -8,8 +8,9 @@ import TextInput from '../../../components/form-inputs/TextInput.jsx';
 import SubmitButton from '../../../components/form-inputs/SubmitButton';
 import ShareDependentField from '../../../components/form-inputs/ShareDependentField.jsx';
 import CheckBoxInput from '../../../components/form-inputs/CheckBoxInput';
-import Paper from '@mui/material/Paper';
 import FileUploader from '../../../components/form-inputs/FileUploader';
+import FormContainer from '../../../components/form-inputs/FormContainer.jsx';
+import CountySelection from '../../../components/form-inputs/CountySelection.jsx';
 
 const validateForm = {
   name: Yup.string().required('Customer name is required'),
@@ -36,7 +37,7 @@ const validateForm = {
 
 function AddCustomerForm({ customer, isLoading, onSubmit }) {
   return (
-    <Paper sx={{ p: 2 }}>
+    <FormContainer header='Create Customer'>
       <Formik
         initialValues={customer}
         validationSchema={Yup.object(validateForm)}
@@ -44,6 +45,9 @@ function AddCustomerForm({ customer, isLoading, onSubmit }) {
       >
         <Form>
           <Grid container spacing={3}>
+            <Grid item md={6} xs={12}>
+              <FileUploader btnLabel='Upload Image' enablePreview name='file' />
+            </Grid>
             <Grid item md={6} xs={12} container spacing={2} direction='column'>
               <Grid item>
                 <TextInput fullWidth label='Customer Name' name='name' />
@@ -91,7 +95,7 @@ function AddCustomerForm({ customer, isLoading, onSubmit }) {
                 />
               </Grid>
               <Grid item>
-                <TextInput
+                <CountySelection
                   fullWidth
                   label='County'
                   name='address.county'
@@ -104,13 +108,10 @@ function AddCustomerForm({ customer, isLoading, onSubmit }) {
                 </SubmitButton>
               </Grid>
             </Grid>
-            <Grid item md={6} xs={12}>
-              <FileUploader btnLabel='Upload Image' enablePreview name='file' />
-            </Grid>
           </Grid>
         </Form>
       </Formik>
-    </Paper>
+    </FormContainer>
   );
 }
 
