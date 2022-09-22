@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8080/api/v0';
+const baseURL = 'https://capacity-manager-api-e64vw3qkva-uc.a.run.app/api/v0';
 
 // let _isRefreshing = false;
 // axiosInstance.interceptors.request.use(

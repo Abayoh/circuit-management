@@ -9,7 +9,7 @@ import SubmitButton from '../../../components/form-inputs/SubmitButton.jsx';
 import MultipleSelect from '../../../components/form-inputs/SelectMultiple.jsx';
 import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
-import FormContainer from '../../../components/form-inputs/FormContainer.jsx';
+import FormContainer from '../../../components/form-inputs/Container.jsx';
 
 const validateForm = {
   fullName: Yup.string().required('Circuits name is required').min(3),

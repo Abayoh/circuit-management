@@ -5,12 +5,12 @@ import * as Yup from 'yup';
 
 import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
-import TextInput from '../../../components/form-inputs/TextInput.jsx';
+import TextInput from '../../../components/form-inputs/TextInput';
 import SelectInput from '../../../components/form-inputs/SelectInput';
 import InputWithAdorment from '../../../components/form-inputs/InputWithAdorment';
-import SubmitButton from '../../../components/form-inputs/SubmitButton.jsx';
-import DependentField from '../../../components/form-inputs/DependentField.jsx';
-import FormContainer from '../../../components/form-inputs/FormContainer.jsx';
+import SubmitButton from '../../../components/form-inputs/SubmitButton';
+import DependentField from '../../../components/form-inputs/DependentField';
+import FormContainer from '../../../components/form-inputs/Container';
 
 const validateForm = {
   name: Yup.string().required('Circuits name is required'),

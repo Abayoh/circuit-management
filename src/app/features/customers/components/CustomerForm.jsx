@@ -6,11 +6,11 @@ import * as Yup from 'yup';
 import Grid from '@mui/material/Grid';
 import TextInput from '../../../components/form-inputs/TextInput.jsx';
 import SubmitButton from '../../../components/form-inputs/SubmitButton';
-import ShareDependentField from '../../../components/form-inputs/ShareDependentField.jsx';
+import ShareDependentField from '../../../components/form-inputs/ShareDependentField';
 import CheckBoxInput from '../../../components/form-inputs/CheckBoxInput';
 import FileUploader from '../../../components/form-inputs/FileUploader';
-import FormContainer from '../../../components/form-inputs/FormContainer.jsx';
-import CountySelection from '../../../components/form-inputs/CountySelection.jsx';
+import FormContainer from '../../../components/form-inputs/Container';
+import CountySelection from '../../../components/form-inputs/CountySelection';
 
 const validateForm = {
   name: Yup.string().required('Customer name is required'),
